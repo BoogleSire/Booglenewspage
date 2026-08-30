@@ -881,7 +881,7 @@ a:hover {
   }
 }
 /* ============================================
-   MAIN LAYOUT - EYES OPENER STYLE
+   MAIN LAYOUT - RESPONSIVE BBC-STYLE LAYOUT
    ============================================ */
 
 .page_body {
@@ -890,6 +890,23 @@ a:hover {
   padding: 0 40px;
 }
 
+/* Outer wrapper for full-width layout */
+#outer-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* Content wrapper with grid layout */
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 /* --- MAIN CONTENT AREA (Post Grid) --- */
 #page_body .widget.Blog .blog-posts {
@@ -1073,30 +1090,154 @@ a:hover {
   font-size: 26px;
 }
 
-/* --- RESPONSIVE --- */
-@media screen and (max-width: 1024px) {
+/* Desktop: Two-column layout with wide content and narrow sidebar */
+@media screen and (min-width: 992px) {
+  .content-wrapper {
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+  }
+
+  /* Main content area takes full available space */
+  main[role="main"] {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Sidebar styling */
+  .sidebar-wrapper {
+    width: 100%;
+    max-width: 280px;
+    position: sticky;
+    top: 20px;
+    align-self: start;
+  }
+
+  /* Ensure post container fills the available width */
+  body.item-view .post-outer-container,
+  body.static_page .post-outer-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Post content images scale properly */
+  body.item-view article img,
+  body.static_page article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+}
+
+/* Tablet: Stack layout */
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 30px;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .sidebar-wrapper {
+    max-width: 100%;
+    position: static;
+  }
+
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile: Single column layout */
+@media screen and (max-width: 768px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 20px;
+    margin: 20px auto;
+  }
+
   .content-wrapper {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-}
 
-@media screen and (max-width: 768px) {
+  .sidebar-wrapper {
+    width: 100%;
+    max-width: 100%;
+    position: static;
+  }
+
   #page_body .widget.Blog .blog-posts {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .post-outer {
     padding: 16px;
   }
-  
+
   .snippet-thumbnail img {
     height: 180px;
   }
-  
+
   #FeaturedPost1 .snippet-thumbnail img {
     height: 220px;
+  }
+
+  /* Adjust header for mobile */
+  .header-container {
+    padding: 0 20px;
+  }
+
+  .site-title {
+    font-size: 24px;
+  }
+
+  .breaking-news-bar .container {
+    padding: 0 20px;
+  }
+
+  /* Footer adjustments */
+  .footer-container {
+    padding: 0 20px !important;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .footer-bottom {
+    padding: 20px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 15px;
+    margin: 15px auto;
+  }
+
+  .site-title {
+    font-size: 20px;
+  }
+
+  .post-title {
+    font-size: 18px;
+  }
+
+  .nav-dropdown {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 0;
   }
 }
   
