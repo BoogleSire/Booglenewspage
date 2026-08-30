@@ -137,9 +137,9 @@ a:hover {
 .breaking-news-bar .container {
   display: flex;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .breaking-label {
@@ -200,9 +200,9 @@ a:hover {
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -535,9 +535,9 @@ a:hover {
 }
 
 .footer-container {
-  max-width: 1200px !important;
+  max-width: 1600px !important;
   margin: 0 auto !important;
-  padding: 0 20px !important;
+  padding: 0 40px !important;
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 40px !important;
@@ -631,9 +631,9 @@ a:hover {
 
 /* Footer Bottom Bar */
 .footer-bottom {
-  max-width: 1200px !important;
+  max-width: 1600px !important;
   margin: 30px auto 0 !important;
-  padding: 20px 20px 0 !important;
+  padding: 20px 40px 0 !important;
   border-top: 1px solid rgba(255,255,255,0.08) !important;
   display: flex !important;
   justify-content: space-between !important;
@@ -740,12 +740,12 @@ a:hover {
    ========================================================= */
 
 @media screen and (min-width: 992px) {
-  /* 1. Outer container expansion */
+  /* 1. Outer container expansion - full width */
   body.item-view .container,
   body.static_page .container,
   body.item-view #outer-wrapper,
   body.static_page #outer-wrapper {
-    max-width: 1300px !important;
+    max-width: 1600px !important;
     width: 95% !important;
     margin: 0 auto !important;
   }
@@ -754,8 +754,8 @@ a:hover {
   body.item-view .content-wrapper,
   body.static_page .content-wrapper {
     display: grid !important;
-    grid-template-columns: 1fr 300px !important;
-    gap: 30px !important;
+    grid-template-columns: 1fr 280px !important;
+    gap: 40px !important;
     max-width: 100% !important;
     width: 100% !important;
   }
@@ -829,27 +829,26 @@ a:hover {
   /* 1. Force outer containers to 100% full screen width */
   body.item-view .container,
   body.static_page .container,
-  body.item-view .content-wrapper,
-  body.static_page .content-wrapper,
   body.item-view #outer-wrapper,
   body.static_page #outer-wrapper,
   body.item-view main[role="main"] > div,
   body.static_page main[role="main"] > div {
     max-width: 100% !important;
     width: 100% !important;
-    padding-left: 25px !important;
-    padding-right: 25px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
     box-sizing: border-box !important;
   }
 
-  /* 2. Make the grid wrapper fill full width edge-to-edge */
+  /* 2. Make the grid wrapper fill full width edge-to-edge with BBC-style layout */
   body.item-view .content-wrapper,
   body.static_page .content-wrapper {
     display: grid !important;
-    grid-template-columns: 1fr 300px !important;
+    grid-template-columns: 1fr 280px !important;
     width: 100% !important;
-    max-width: 100% !important;
-    gap: 30px !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    gap: 40px !important;
     box-sizing: border-box !important;
   }
 
@@ -886,9 +885,9 @@ a:hover {
    ============================================ */
 
 .page_body {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 30px auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 
@@ -1806,9 +1805,9 @@ a.sharing-pinterest:hover {
   /* --- HOMEPAGE: Full Width, No Sidebar --- */
   .homepage .content-wrapper {
     display: block !important;
-    max-width: 1200px !important;
+    max-width: 1600px !important;
     margin: 0 auto !important;
-    padding: 0 20px !important;
+    padding: 0 40px !important;
   }
 
   .homepage #main {
@@ -1824,23 +1823,27 @@ a.sharing-pinterest:hover {
   .item-view .content-wrapper,
   .static_page .content-wrapper {
     display: grid !important;
-    grid-template-columns: 1fr 320px !important;
-    gap: 30px !important;
-    max-width: 1200px !important;
+    grid-template-columns: 1fr 280px !important;
+    gap: 40px !important;
+    max-width: 1600px !important;
     margin: 0 auto !important;
-    padding: 20px !important;
+    padding: 20px 40px !important;
   }
 
   .item-view #main,
   .static_page #main {
     grid-column: 1 / 2 !important;
     max-width: 100% !important;
+    min-width: 0 !important;
   }
 
   .item-view .sidebar-wrapper,
   .static_page .sidebar-wrapper {
     grid-column: 2 / 3 !important;
     display: block !important;
+    position: sticky !important;
+    top: 20px !important;
+    height: fit-content !important;
   }
 
   /* --- SIDEBAR STYLES --- */
@@ -1853,6 +1856,56 @@ a.sharing-pinterest:hover {
     border-radius: 8px !important;
     padding: 20px !important;
     border: 1px solid #f0f2f5 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+  }
+
+  /* Compact sidebar widget styling */
+  .sidebar-wrapper .widget {
+    margin-bottom: 25px !important;
+    padding-bottom: 25px !important;
+    border-bottom: 1px solid #eaeaea !important;
+  }
+
+  .sidebar-wrapper .widget:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .sidebar-wrapper .widget h2,
+  .sidebar-wrapper .widget h3 {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: #1a1a1a !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #e31837 !important;
+  }
+
+  .sidebar-wrapper .widget ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .sidebar-wrapper .widget ul li {
+    margin-bottom: 10px !important;
+  }
+
+  .sidebar-wrapper .widget ul li a {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    display: block !important;
+    padding: 6px 0 !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .sidebar-wrapper .widget ul li a:hover {
+    color: #e31837 !important;
   }
 
   /* --- HOMEPAGE POST GRID (2 Columns) --- */
@@ -1954,9 +2007,9 @@ html, body {
 }
 
 .page_body {
-  max-width: 1200px !important;
+  max-width: 1600px !important;
   margin: 30px auto !important;
-  padding: 0 20px !important;
+  padding: 0 40px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -1977,9 +2030,9 @@ html, body {
 }
 
 .footer-container {
-  max-width: 1200px !important;
+  max-width: 1600px !important;
   margin: 0 auto !important;
-  padding: 0 20px !important;
+  padding: 0 40px !important;
   width: 100% !important;
   box-sizing: border-box !important;
   display: grid !important;
@@ -1988,9 +2041,9 @@ html, body {
 }
 
 .footer-bottom {
-  max-width: 1200px !important;
+  max-width: 1600px !important;
   margin: 30px auto 0 !important;
-  padding: 20px 20px 0 !important;
+  padding: 20px 40px 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
