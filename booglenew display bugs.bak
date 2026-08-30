@@ -636,62 +636,69 @@ a:hover {
    ========================================================= */
 
 @media screen and (min-width: 992px) {
+
   /* 1. Outer container expansion */
   body.item-view .container,
-  body.static_page .container,
+  body.static-view .container,
   body.item-view #outer-wrapper,
-  body.static_page #outer-wrapper {
+  body.static-view #outer-wrapper {
     max-width: 1300px !important;
     width: 95% !important;
     margin: 0 auto !important;
   }
 
-  /* 2. Main structural layout - use grid for content-wrapper */
-  body.item-view .content-wrapper,
-  body.static_page .content-wrapper {
-    display: grid !important;
-    grid-template-columns: 1fr 300px !important;
-    gap: 30px !important;
-    max-width: 100% !important;
+  /* 2. Main structural layout flexbox */
+  body.item-view div:has(> main),
+  body.static-view div:has(> main) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
     width: 100% !important;
+    max-width: 100% !important;
+    gap: 30px !important;
   }
 
-  /* 3. Post Content Column */
+  /* 3. Post Content Column (70% Width) */
   body.item-view main,
   body.item-view main[role="main"],
-  body.static_page main,
-  body.static_page main[role="main"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
+  body.static-view main,
+  body.static-view main[role="main"] {
+    flex: 0 0 70% !important;
+    width: 70% !important;
+    max-width: 70% !important;
+    min-width: 0 !important; /* Prevents flex collapse */
   }
 
   /* Force all nested inner wrappers in main/article to stretch to 100% */
   body.item-view main div,
-  body.static_page main div,
+  body.static-view main div,
   body.item-view article,
-  body.static_page article {
+  body.static-view article {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* 4. Sidebar Column */
+  /* 4. Sidebar Column (27% Width) */
   body.item-view aside,
   body.item-view aside[role="complementary"],
-  body.static_page aside,
-  body.static_page aside[role="complementary"] {
-    width: 100% !important;
-    max-width: 100% !important;
+  body.static-view aside,
+  body.static-view aside[role="complementary"] {
+    flex: 0 0 27% !important;
+    width: 27% !important;
+    max-width: 27% !important;
+    min-width: 0 !important;
   }
 
   /* Force inner sidebar widgets & list items to expand properly */
   body.item-view aside div,
-  body.static_page aside div,
+  body.static-view aside div,
   body.item-view aside ul,
-  body.static_page aside ul,
+  body.static-view aside ul,
   body.item-view aside li,
-  body.static_page aside li {
+  body.static-view aside li {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -709,10 +716,11 @@ a:hover {
 /* Mobile & Tablet Fallback */
 @media screen and (max-width: 991px) {
   body.item-view main,
-  body.static_page main,
+  body.static-view main,
   body.item-view aside,
-  body.static_page aside {
+  body.static-view aside {
     width: 100% !important;
+    flex: 0 0 100% !important;
     max-width: 100% !important;
   }
 }
@@ -724,13 +732,13 @@ a:hover {
 
   /* 1. Force outer containers to 100% full screen width */
   body.item-view .container,
-  body.static_page .container,
+  body.static-view .container,
   body.item-view .content-wrapper,
-  body.static_page .content-wrapper,
+  body.static-view .content-wrapper,
   body.item-view #outer-wrapper,
-  body.static_page #outer-wrapper,
+  body.static-view #outer-wrapper,
   body.item-view main[role="main"] > div,
-  body.static_page main[role="main"] > div {
+  body.static-view main[role="main"] > div {
     max-width: 100% !important;
     width: 100% !important;
     padding-left: 25px !important;
@@ -738,10 +746,10 @@ a:hover {
     box-sizing: border-box !important;
   }
 
-  /* 2. Make the grid wrapper fill full width edge-to-edge */
-  body.item-view .content-wrapper,
-  body.static_page .content-wrapper {
-    display: grid !important;
+  /* 2. Make the flex wrapper fill full width edge-to-edge */
+  body.item-view div:has(> main),
+  body.static-view div:has(> main) {
+    display: flex !important;
     width: 100% !important;
     max-width: 100% !important;
     gap: 30px !important;
@@ -751,8 +759,8 @@ a:hover {
   /* 3. Widen post content wrapper to take up remaining full space */
   body.item-view main,
   body.item-view main[role="main"],
-  body.static_page main,
-  body.static_page main[role="main"] {
+  body.static-view main,
+  body.static-view main[role="main"] {
     flex: 1 1 78% !important;
     width: 78% !important;
     max-width: 78% !important;
@@ -761,8 +769,8 @@ a:hover {
   /* 4. Keep sidebar compact on the right edge */
   body.item-view aside,
   body.item-view aside[role="complementary"],
-  body.static_page aside,
-  body.static_page aside[role="complementary"] {
+  body.static-view aside,
+  body.static-view aside[role="complementary"] {
     flex: 0 0 20% !important;
     width: 20% !important;
     max-width: 20% !important;
@@ -770,7 +778,7 @@ a:hover {
 
   /* 5. Fluid image scaling inside the full-width post area */
   body.item-view article img,
-  body.static_page article img {
+  body.static-view article img {
     max-width: 100% !important;
     height: auto !important;
     display: block !important;
