@@ -1,4 +1,49 @@
 ```
-# XML files
-*.xml
+# XML-related build artifacts (if any)
+*.xml.bak
+*.xml~
+*.xml.tmp
+
+# General temp files
+*.tmp
+*.bak
+*~
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies and build artifacts
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+dist/
+build/
+target/
+.venv/
+venv/
+.env/
+
+# Coverage and test files
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# System files
+.DS_Store
+Thumbs.db
 ```

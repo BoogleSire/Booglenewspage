@@ -276,6 +276,67 @@ a:hover {
   border-bottom-color: #B80000;
 }
 
+/* Desktop Submenu Styles */
+.has-submenu {
+  position: relative;
+}
+
+.has-submenu > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 16px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: none;
+  transition: all 0.2s ease;
+}
+
+.submenu li a:hover {
+  background: #f5f5f5;
+  color: #B80000;
+}
+
+.has-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.has-submenu:hover > a .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
   display: none;
@@ -342,6 +403,42 @@ a:hover {
 
 .mobile-nav-menu li a:hover {
   background: rgba(184, 0, 0, 0.2);
+}
+
+/* Mobile Submenu Styles */
+.has-submenu-mobile > a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-arrow-mobile {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.submenu-mobile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #252525;
+  transition: max-height 0.3s ease;
+}
+
+.submenu-mobile.active {
+  max-height: 300px;
+}
+
+.submenu-mobile li a {
+  padding-left: 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+}
+
+.submenu-mobile li:last-child a {
+  border-bottom: none;
 }
 
 /* Responsive Header Styles */
@@ -2463,7 +2560,16 @@ html, body {
         <li><a href='/search/label/News'>News</a></li>
         <li><a href='/search/label/Gist'>Gist</a></li>
         <li><a href='/search/label/Entertainment'>Entertainment</a></li>
-        <li><a href='/search/label/Sports'>Sports</a></li>
+        <li class='has-submenu'>
+          <a href='/search/label/Sports'>Sports <span class='dropdown-arrow'>▼</span></a>
+          <ul class='submenu'>
+            <li><a href='/search/label/Sports/Football'>Football</a></li>
+            <li><a href='/search/label/Sports/Basketball'>Basketball</a></li>
+            <li><a href='/search/label/Sports/Tennis'>Tennis</a></li>
+            <li><a href='/search/label/Sports/Athletics'>Athletics</a></li>
+            <li><a href='/search/label/Sports/Boxing'>Boxing</a></li>
+          </ul>
+        </li>
         <li><a href='/search/label/Technology'>Technology</a></li>
       </ul>
     </nav>
@@ -2483,7 +2589,16 @@ html, body {
       <li><a href='/search/label/News'>News</a></li>
       <li><a href='/search/label/Gist'>Gist</a></li>
       <li><a href='/search/label/Entertainment'>Entertainment</a></li>
-      <li><a href='/search/label/Sports'>Sports</a></li>
+      <li class='has-submenu-mobile'>
+        <a href='javascript:void(0)' onclick='toggleSportsSubmenu()'>Sports <span class='dropdown-arrow-mobile'>▼</span></a>
+        <ul class='submenu-mobile' id='sportsSubmenu'>
+          <li><a href='/search/label/Sports/Football'>Football</a></li>
+          <li><a href='/search/label/Sports/Basketball'>Basketball</a></li>
+          <li><a href='/search/label/Sports/Tennis'>Tennis</a></li>
+          <li><a href='/search/label/Sports/Athletics'>Athletics</a></li>
+          <li><a href='/search/label/Sports/Boxing'>Boxing</a></li>
+        </ul>
+      </li>
       <li><a href='/search/label/Technology'>Technology</a></li>
     </ul>
   </div>
@@ -3753,6 +3868,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  
+  // Toggle Sports submenu in mobile view
+  window.toggleSportsSubmenu = function() {
+    var submenu = document.getElementById('sportsSubmenu');
+    var arrow = document.querySelector('.dropdown-arrow-mobile');
+    if (submenu && arrow) {
+      submenu.classList.toggle('active');
+      arrow.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+  };
   
   /* ============================================
      COOL FEATURES - SCROLL PROGRESS & BACK TO TOP
