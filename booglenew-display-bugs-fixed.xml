@@ -21,13 +21,78 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /* --- Global --- */
 body {
-  background: #f4f4f4;
+  background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
   color: #333;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-load-animation {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #e31837, #ff6b81);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+  z-index: 999;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(227, 24, 55, 0.6);
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
 }
 
 a {
@@ -43,10 +108,30 @@ a:hover {
 
 /* --- BREAKING NEWS BAR --- */
 .breaking-news-bar {
-  background: #e31837;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
   color: #fff;
-  padding: 6px 0;
-  font-size: 13px;
+  padding: 8px 0;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(227, 24, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shine effect on breaking news bar */
+.breaking-news-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 .breaking-news-bar .container {
@@ -88,11 +173,30 @@ a:hover {
 
 /* --- HEADER --- */
 .header-wrapper {
-  background: #1a1a2e;
-  padding: 12px 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+  padding: 15px 0;
   border-bottom: 3px solid #e31837;
   position: relative;
   z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Header glow effect */
+.header-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e31837, transparent);
+  animation: headerGlow 2s ease-in-out infinite;
+}
+
+@keyframes headerGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 .header-container {
@@ -797,16 +901,39 @@ a:hover {
 
 .post-outer-container {
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #f0f2f5;
+  position: relative;
+}
+
+/* Gradient border effect on hover */
+.post-outer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #e31837, #ff6b81, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post-outer-container:hover::before {
+  opacity: 1;
 }
 
 .post-outer-container:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(227, 24, 55, 0.15);
+  transform: translateY(-5px) scale(1.02);
 }
 
 .post-outer {
@@ -3296,6 +3423,48 @@ document.addEventListener('DOMContentLoaded', function() {
       parent.classList.toggle('open');
     });
   });
+  
+  /* ============================================
+     COOL FEATURES - SCROLL PROGRESS & BACK TO TOP
+     ============================================ */
+  
+  // Create scroll progress bar
+  var progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.insertBefore(progressBar, document.body.firstChild);
+  
+  // Create scroll to top button
+  var scrollToTopBtn = document.createElement('div');
+  scrollToTopBtn.className = 'scroll-to-top';
+  scrollToTopBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>';
+  document.body.appendChild(scrollToTopBtn);
+  
+  // Scroll event handler
+  window.addEventListener('scroll', function() {
+    // Update scroll progress bar
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + '%';
+    
+    // Show/hide scroll to top button
+    if (winScroll > 300) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
+  });
+  
+  // Scroll to top functionality
+  scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Add page load animation
+  document.body.classList.add('page-load-animation');
 });
 //]]> 
 </script> </div>
