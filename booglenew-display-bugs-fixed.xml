@@ -915,14 +915,51 @@ a:hover {
   gap: 25px;
 }
 
+/* Homepage specific enhancements */
+.homepage #page_body .widget.Blog .blog-posts {
+  animation: gridFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes gridFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .post-outer-container {
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #f0f2f5;
   position: relative;
+  opacity: 0;
+  animation: postCardFadeIn 0.6s ease-out forwards;
+}
+
+/* Staggered animation for post cards */
+.homepage .post-outer-container:nth-child(1) { animation-delay: 0.1s; }
+.homepage .post-outer-container:nth-child(2) { animation-delay: 0.2s; }
+.homepage .post-outer-container:nth-child(3) { animation-delay: 0.3s; }
+.homepage .post-outer-container:nth-child(4) { animation-delay: 0.4s; }
+.homepage .post-outer-container:nth-child(5) { animation-delay: 0.5s; }
+.homepage .post-outer-container:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes postCardFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Gradient border effect on hover */
@@ -962,6 +999,7 @@ a:hover {
   max-width: 100%;
   border-radius: 6px 6px 0 0;
   overflow: hidden;
+  position: relative;
 }
 
 .snippet-thumbnail img {
@@ -969,6 +1007,30 @@ a:hover {
   height: 200px;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Image zoom effect on hover */
+.post-outer-container:hover .snippet-thumbnail img {
+  transform: scale(1.1);
+}
+
+/* Overlay effect on thumbnail */
+.snippet-thumbnail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(227, 24, 55, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.post-outer-container:hover .snippet-thumbnail::after {
+  opacity: 1;
 }
 
 /* Post Titles */
@@ -978,17 +1040,37 @@ a:hover {
   line-height: 1.3;
   margin: 0 0 8px 0;
   font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  overflow: hidden;
 }
 
 .post-title a {
   color: #1a1a2e;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* Animated underline effect on title hover */
+.post-title a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  transition: width 0.3s ease;
 }
 
 .post-title a:hover {
   color: #e31837;
   text-decoration: none;
+}
+
+.post-title a:hover::after {
+  width: 100%;
 }
 
 /* Post Meta */
@@ -998,11 +1080,40 @@ a:hover {
   margin-bottom: 10px;
   border-bottom: none;
   padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .byline, .post-timestamp {
   display: inline-block;
   margin-right: 12px;
+  position: relative;
+  padding-left: 18px;
+}
+
+/* Icon styling for meta info */
+.byline::before, .post-timestamp::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+.byline::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e31837'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.post-timestamp::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e31837'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .post-body {
@@ -1022,32 +1133,36 @@ a:hover {
 }
 
 .jump-link a {
-  background: transparent;
-  color: #e31837;
-  padding: 0;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 25px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 3px 10px rgba(227, 24, 55, 0.3);
 }
 
 .jump-link a::after {
   content: " →";
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
   display: inline-block;
+  margin-left: 5px;
 }
 
 .jump-link a:hover {
-  background: transparent;
-  color: #c41230;
-  transform: none;
-  box-shadow: none;
+  background: linear-gradient(90deg, #c41230, #e31837);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(227, 24, 55, 0.5);
   text-decoration: none;
 }
 
 .jump-link a:hover::after {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 /* Post Footer */
@@ -1057,37 +1172,92 @@ a:hover {
   margin-top: 14px;
   font-size: 13px;
   color: #888;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.post-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .post-labels a {
-  background: #f0f2f5;
+  background: linear-gradient(135deg, #f0f2f5, #e8e8e8);
   color: #555;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 20px;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 600;
-  margin-right: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: inline-block;
 }
 
 .post-labels a:hover {
-  background: #e31837;
+  background: linear-gradient(135deg, #e31837, #ff6b81);
   color: #fff;
   text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(227, 24, 55, 0.4);
 }
 
 /* --- FEATURED POST (Full Width) --- */
 #FeaturedPost1 {
   grid-column: 1 / -1;
   margin-bottom: 5px;
+  animation: featuredPostFadeIn 1s ease-out forwards;
+}
+
+@keyframes featuredPostFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #FeaturedPost1 .snippet-thumbnail img {
   height: 350px;
+  transition: transform 0.6s ease;
+}
+
+#FeaturedPost1:hover .snippet-thumbnail img {
+  transform: scale(1.05);
 }
 
 #FeaturedPost1 .post-title {
   font-size: 26px;
+  position: relative;
+}
+
+/* Featured post badge */
+#FeaturedPost1::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #e31837, #ff6b81);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* Desktop: Two-column layout with wide content and narrow sidebar */
@@ -2005,6 +2175,16 @@ a.sharing-pinterest:hover {
     margin-bottom: 25px !important;
     padding-bottom: 25px !important;
     border-bottom: 1px solid #eaeaea !important;
+    background: #fff !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .sidebar-wrapper .widget:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    transform: translateY(-2px) !important;
   }
 
   .sidebar-wrapper .widget:last-child {
@@ -2023,6 +2203,25 @@ a.sharing-pinterest:hover {
     margin-bottom: 15px !important;
     padding-bottom: 10px !important;
     border-bottom: 2px solid #e31837 !important;
+    position: relative !important;
+  }
+  
+  /* Animated underline on sidebar titles */
+  .sidebar-wrapper .widget h2::after,
+  .sidebar-wrapper .widget h3::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 0 !important;
+    width: 50px !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, #e31837, #ff6b81) !important;
+    transition: width 0.3s ease !important;
+  }
+  
+  .sidebar-wrapper .widget:hover h2::after,
+  .sidebar-wrapper .widget:hover h3::after {
+    width: 100% !important;
   }
 
   .sidebar-wrapper .widget ul {
@@ -2033,6 +2232,18 @@ a.sharing-pinterest:hover {
 
   .sidebar-wrapper .widget ul li {
     margin-bottom: 10px !important;
+    padding: 8px 0 !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .sidebar-wrapper .widget ul li:last-child {
+    border-bottom: none !important;
+  }
+  
+  .sidebar-wrapper .widget ul li:hover {
+    padding-left: 8px !important;
+    background: linear-gradient(90deg, rgba(227, 24, 55, 0.05), transparent) !important;
   }
 
   .sidebar-wrapper .widget ul li a {
@@ -2041,12 +2252,31 @@ a.sharing-pinterest:hover {
     color: #333 !important;
     text-decoration: none !important;
     display: block !important;
-    padding: 6px 0 !important;
-    transition: color 0.2s ease !important;
+    padding: 0 !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    padding-left: 12px !important;
+  }
+  
+  /* Bullet point for sidebar links */
+  .sidebar-wrapper .widget ul li a::before {
+    content: '•' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #e31837 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    transition: transform 0.2s ease !important;
+  }
+  
+  .sidebar-wrapper .widget ul li:hover a::before {
+    transform: translateX(3px) !important;
+    color: #ff6b81 !important;
   }
 
   .sidebar-wrapper .widget ul li a:hover {
     color: #e31837 !important;
+    text-decoration: none !important;
   }
 
   /* --- HOMEPAGE POST GRID (2 Columns) --- */
