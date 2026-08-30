@@ -173,30 +173,12 @@ a:hover {
 
 /* --- HEADER --- */
 .header-wrapper {
-  background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
-  padding: 15px 0;
-  border-bottom: 3px solid #e31837;
+  background: #1a1a1a !important;
+  border-bottom: 4px solid #B80000 !important;
+  padding: 0;
   position: relative;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
-}
-
-/* Header glow effect */
-.header-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #e31837, transparent);
-  animation: headerGlow 2s ease-in-out infinite;
-}
-
-@keyframes headerGlow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
 .header-container {
@@ -206,272 +188,219 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 70px;
 }
 
-/* --- Home Link (Left) --- */
+/* Logo Area */
 .header-left {
   flex: 0 0 auto;
 }
 
-.home-link {
+.blog-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  text-decoration: none;
   color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.06);
-  transition: all 0.3s ease;
 }
 
-.home-link:hover {
-  background: rgba(227, 24, 55, 0.3);
-  color: #fff;
-  text-decoration: none;
-}
-
-.home-icon {
-  width: 22px;
-  height: 22px;
-  fill: #e31837;
-}
-
-/* --- Logo (Center) --- */
-.header-brand {
-  flex: 1;
-  text-align: center;
-}
-
-.site-title {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.site-title a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.site-title a:hover {
-  color: #e31837;
-}
-
-.site-tagline {
-  font-family: 'Arial', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.5);
-  margin: 2px 0 0 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* --- Hamburger Toggle (Right) --- */
-.nav-toggle {
+.logo-text-wrapper {
   display: flex;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 10px 12px;
-  flex-direction: column;
-  gap: 5px;
-  transition: all 0.3s ease;
-  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
 }
 
-.nav-toggle:hover {
-  background: rgba(227, 24, 55, 0.2);
-  border-color: #e31837;
+.logo-brand {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
 }
 
-.hamburger-line {
-  display: block;
-  width: 26px;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+.logo-tv-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #B80000;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
 }
 
-.nav-toggle.active .hamburger-line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 6px);
-  background: #e31837;
+.tv-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
-.nav-toggle.active .hamburger-line:nth-child(2) {
-  opacity: 0;
+.logo-tagline {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #b8b8b8;
+  font-weight: 400;
+  margin-left: 4px;
 }
 
-.nav-toggle.active .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -6px);
-  background: #e31837;
-}
-
-/* --- DROPDOWN MENU - CLEAN DROPDOWN STYLE --- */
-.nav-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: auto;
-  right: 0;
-  width: 320px;
-  max-width: 90vw;
-  background: #1a1a2e;
-  border-top: 3px solid #e31837;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-  z-index: 999;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.nav-dropdown.open {
-  display: block;
-}
-
-.nav-dropdown-inner {
-  padding: 16px;
+/* Desktop Navigation */
+.desktop-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
-  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   gap: 2px;
 }
 
-.nav-menu > li > a {
-  color: #e2e8f0;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
+.nav-menu li a {
+  display: block;
+  padding: 10px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.25s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
 }
 
-.nav-menu > li > a:hover {
-  background: rgba(227, 24, 55, 0.15);
-  color: #fff;
-  text-decoration: none;
+.nav-menu li a:hover {
+  background: rgba(255,255,255,0.1);
+  border-bottom-color: #B80000;
 }
 
-.arrow-icon {
-  font-size: 10px;
-  opacity: 0.7;
-  margin-left: auto;
-  transition: transform 0.25s ease;
-}
-
-.dropdown.open > a .arrow-icon {
-  transform: rotate(180deg);
-}
-
-/* --- Sub Menu --- */
-.nav-menu .dropdown-menu {
-  list-style: none;
-  padding: 0;
-  margin: 2px 0 2px 16px;
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
   display: none;
-  border-left: 2px solid rgba(227, 24, 55, 0.2);
-  padding-left: 12px;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
 }
 
-.nav-menu .dropdown.open > .dropdown-menu {
+.mobile-menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Navigation */
+.mobile-nav-container {
+  display: none;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.mobile-nav-container.active {
   display: block;
 }
 
-.nav-menu .dropdown-menu li a {
-  color: #b0b8c8;
-  padding: 7px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
+.mobile-nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav-menu li {
+  border-bottom: 1px solid #333;
+}
+
+.mobile-nav-menu li a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff;
   text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease;
 }
 
-.nav-menu .dropdown-menu li a:hover {
-  background: rgba(227, 24, 55, 0.1);
-  color: #fff;
-  padding-left: 16px;
-  text-decoration: none;
+.mobile-nav-menu li a:hover {
+  background: rgba(184, 0, 0, 0.2);
 }
 
-/* --- Search in Dropdown --- */
-.nav-search {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-search form {
-  display: flex;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-search input {
-  background: transparent;
-  border: none;
-  padding: 8px 14px;
-  font-size: 13px;
-  flex: 1;
-  outline: none;
-  color: #fff;
-}
-
-.nav-search input::placeholder {
-  color: rgba(255,255,255,0.4);
-}
-
-.nav-search button {
-  background: #e31837;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s ease;
-}
-
-.nav-search button:hover {
-  background: #c41230;
-}
-
-/* --- Mobile: Full width on small screens --- */
-@media screen and (max-width: 480px) {
-  .nav-dropdown {
-    width: 100%;
-    max-width: 100%;
-    left: 0;
-    right: 0;
-    border-radius: 0;
+/* Responsive Header Styles */
+@media (max-width: 991px) {
+  .desktop-nav {
+    display: none;
   }
   
-  .nav-dropdown-inner {
-    padding: 12px;
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .header-container {
+    padding: 0 20px;
+  }
+  
+  .logo-brand {
+    font-size: 26px;
+  }
+  
+  .logo-tagline {
+    display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 15px;
+    height: 60px;
+  }
+  
+  .logo-brand {
+    font-size: 22px;
+  }
+  
+  .logo-tv-badge {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  
+  .tv-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Clean up old nav dropdown styles that are no longer needed */
+.nav-dropdown,
+.nav-dropdown-inner,
+.nav-toggle,
+.hamburger-line,
+.site-title,
+.site-tagline,
+.header-brand,
+.home-link,
+.home-icon {
+  display: none !important;
+}
+
 /* --- REST OF YOUR STYLES (Post Cards, Footer, etc) --- */
 /* Keep your existing styles for posts, footer, sidebar, etc here */
 /* I've kept only the header/nav changes above */
@@ -2508,71 +2437,55 @@ html, body {
 <!-- Header -->
 <header class='header-wrapper' role='banner'>
   <div class='header-container'>
-    <!-- Left: Home Link -->
+    <!-- Left: Logo Area -->
     <div class='header-left'>
-      <a class='home-link' expr:href='data:blog.homepageUrl'>
-       <svg class='home-icon' height='20' style='width:20px;height:20px;' viewBox='0 0 24 24' width='20'>
-  <path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' fill='currentColor'/>
-</svg>
-        <span>Home</span>
+      <a class='blog-logo' expr:href='data:blog.homepageUrl'>
+        <div class='logo-text-wrapper'>
+          <span class='logo-brand'>Boogle</span>
+          <span class='logo-tv-badge'>
+            <svg class='tv-icon' viewBox='0 0 24 24' fill='currentColor'>
+              <rect x='2' y='7' width='20' height='15' rx='2' ry='2'/>
+              <polyline points='8 7 12 3 16 7'/>
+              <line x1='12' y1='11' x2='12' y2='17'/>
+              <line x1='9' y1='14' x2='15' y2='14'/>
+            </svg>
+            <span>TV</span>
+          </span>
+        </div>
+        <span class='logo-tagline'>News &amp; Gist Hub</span>
       </a>
     </div>
     
-    <!-- Center: Logo -->
-    <div class='header-brand'>
-      <h1 class='site-title'>
-        <a expr:href='data:blog.homepageUrl'>BOOGLE TV</a>
-      </h1>
-      <p class='site-tagline'>News &amp; Gist Hub</p>
-    </div>
-    
-    <!-- Right: Hamburger Toggle -->
-    <button aria-label='Toggle Navigation' class='nav-toggle' id='navToggle'>
-      <span class='hamburger-line'/>
-      <span class='hamburger-line'/>
-      <span class='hamburger-line'/>
+    <!-- Right: Desktop Navigation -->
+    <nav class='desktop-nav'>
+      <ul class='nav-menu'>
+        <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+        <li><a href='/search/label/News'>News</a></li>
+        <li><a href='/search/label/Gist'>Gist</a></li>
+        <li><a href='/search/label/Entertainment'>Entertainment</a></li>
+        <li><a href='/search/label/Sports'>Sports</a></li>
+        <li><a href='/search/label/Technology'>Technology</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button aria-label='Toggle Menu' class='mobile-menu-toggle' id='mobileMenuToggle'>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
   
-  <!-- Navigation Dropdown -->
-  <div class='nav-dropdown' id='navDropdown'>
-    <div class='nav-dropdown-inner'>
-      <ul class='nav-menu'>
-        <li><a expr:href='data:blog.homepageUrl'>🏠 Home</a></li>
-        
-        <li class='dropdown'>
-          <a href='#'>📂 Categories <span class='arrow-icon'>&#9662;</span></a>
-          <ul class='dropdown-menu'>
-            <li><a href='https://boogletvnews.blogspot.com/p/finances-and-crypto.html'>💰 Finances &amp; Crypto</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/politics.html'>🏛&#65039; Politics</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/celebrity-gist.html'>&#11088; Celebrity Gist</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/asin-de-hot-hot-trending-topics.html'>🔥 Asin De Hot</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/education.html'>📚 Education</a></li>
-            
-            <li class='dropdown'>
-              <a href='#'>&#9917; Sports <span class='arrow-icon'>&#9656;</span></a>
-              <ul class='dropdown-menu'>
-                <li><a href='https://boogletvnews.blogspot.com/p/football-news.html'>&#9917; Football News</a></li>
-                <li><a href='https://boogletvnews.blogspot.com/p/basketball-news-dashboard.html'>🏀 Basketball News</a></li>
-                <li><a href='https://boogletvnews.blogspot.com/p/boxing-ufc-mma.html'>🥊 Boxing &amp; UFC/MMA</a></li>
-                <li><a href='https://boogletvnews.blogspot.com/p/track-athletics.html'>🏃 Track &amp; Athletics</a></li>
-                <li><a href='https://boogletvnews.blogspot.com/p/formula-1-motorsport.html'>🏎&#65039; Formula 1 &amp; Motorsport</a></li>
-                <li><a href='https://boogletvnews.blogspot.com/p/gaming-esports.html'>🎮 Gaming &amp; Esports</a></li>
-              </ul>
-            </li>
-            
-            <li><a href='https://boogletvnews.blogspot.com/p/general-categories-tech-ent-lifestyle.html'>📰 General Categories</a></li>
-          </ul>
-        </li>
-        
-        <li class='nav-search'>
-          <form expr:action='data:blog.searchUrl' method='get'>
-            <input name='q' placeholder='Search...' type='text'/>
-            <button type='submit'>🔍</button>
-          </form>
-        </li>
-      </ul>
-    </div>
+  <!-- Mobile Navigation Dropdown -->
+  <div class='mobile-nav-container' id='mobileNavContainer'>
+    <ul class='mobile-nav-menu'>
+      <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+      <li><a href='/search/label/News'>News</a></li>
+      <li><a href='/search/label/Gist'>Gist</a></li>
+      <li><a href='/search/label/Entertainment'>Entertainment</a></li>
+      <li><a href='/search/label/Sports'>Sports</a></li>
+      <li><a href='/search/label/Technology'>Technology</a></li>
+    </ul>
   </div>
 </header>
 
@@ -3821,32 +3734,25 @@ html, body {
 <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
-  var toggleBtn = document.getElementById('navToggle');
-  var navDropdown = document.getElementById('navDropdown');
+  // Mobile menu toggle functionality
+  var mobileToggleBtn = document.getElementById('mobileMenuToggle');
+  var mobileNavContainer = document.getElementById('mobileNavContainer');
   
-  if (toggleBtn && navDropdown) {
-    toggleBtn.addEventListener('click', function(e) {
+  if (mobileToggleBtn && mobileNavContainer) {
+    mobileToggleBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       this.classList.toggle('active');
-      navDropdown.classList.toggle('open');
+      mobileNavContainer.classList.toggle('active');
     });
     
+    // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-      if (!navDropdown.contains(e.target) && !toggleBtn.contains(e.target)) {
-        toggleBtn.classList.remove('active');
-        navDropdown.classList.remove('open');
+      if (!mobileNavContainer.contains(e.target) && !mobileToggleBtn.contains(e.target)) {
+        mobileToggleBtn.classList.remove('active');
+        mobileNavContainer.classList.remove('active');
       }
     });
   }
-  
-  var dropdowns = document.querySelectorAll('.nav-menu .dropdown > a');
-  dropdowns.forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var parent = this.parentElement;
-      parent.classList.toggle('open');
-    });
-  });
   
   /* ============================================
      COOL FEATURES - SCROLL PROGRESS & BACK TO TOP
