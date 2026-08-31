@@ -1043,8 +1043,8 @@ body#layout .footer{display:none}
         </b:includable>
         <b:includable id='nextprev'>
           <div class='blog-pager' id='blog-pager'>
-            <b:if cond='data:newerPageUrl'><a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:messages.newerPosts'><data:messages.newerPosts/></a></b:if>
-            <b:if cond='data:olderPageUrl'><a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:messages.olderPosts'><data:messages.olderPosts/></a></b:if>
+            <b:if cond='data:view.newerPageUrl'><a class='blog-pager-newer-link' expr:href='data:view.newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:messages.newerPosts'><data:messages.newerPosts/></a></b:if>
+            <b:if cond='data:view.olderPageUrl'><a class='blog-pager-older-link' expr:href='data:view.olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:messages.olderPosts'><data:messages.olderPosts/></a></b:if>
           </div>
           <div class='clear'/>
         </b:includable>

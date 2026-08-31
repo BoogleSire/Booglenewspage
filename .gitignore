@@ -1,9 +1,7 @@
 ```
-# WordPress/WPML related
-*.wpml-config.xml
-wpml-config.xml
-
-# XML backup/config files
-*.xml.bak
-*.xml~
+# WordPress/WooCommerce theme files
+*.xml
+wp-content/
+wp-includes/
+wp-admin/
 ```
