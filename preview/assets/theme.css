@@ -1,0 +1,2355 @@
+
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+/* ============================================
+   COMPLETE WORKING HEADER - NO CONFLICTS
+   ============================================ */
+
+/* --- Variables --- */
+
+
+
+
+/* --- Global --- */
+body {
+  background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
+  color: #333;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-load-animation {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #e31837, #ff6b81);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+  z-index: 999;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(227, 24, 55, 0.6);
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+a {
+  color: #e31837;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #c41230;
+  text-decoration: underline;
+}
+
+/* --- BREAKING NEWS BAR --- */
+.breaking-news-bar {
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  color: #fff;
+  padding: 8px 0;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(227, 24, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shine effect on breaking news bar */
+.breaking-news-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.breaking-news-bar .container {
+  display: flex;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.breaking-label {
+  background: #fff;
+  color: #e31837;
+  padding: 3px 12px;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.breaking-news-ticker {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.breaking-news-ticker span {
+  display: inline-block;
+  animation: ticker 25s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* --- HEADER --- */
+.header-wrapper {
+  background: #1a1a1a !important;
+  border-bottom: 4px solid #B80000 !important;
+  padding: 0;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.header-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+/* Logo Area */
+.header-left {
+  flex: 0 0 auto;
+}
+
+.blog-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo-text-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-brand {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.logo-tv-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #B80000;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.tv-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.logo-tagline {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #b8b8b8;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+}
+
+.nav-menu li a {
+  display: block;
+  padding: 10px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-menu li a:hover {
+  background: rgba(255,255,255,0.1);
+  border-bottom-color: #B80000;
+}
+
+/* Desktop Submenu Styles */
+.has-submenu {
+  position: relative;
+}
+
+.has-submenu > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 16px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: none;
+  transition: all 0.2s ease;
+}
+
+.submenu li a:hover {
+  background: #f5f5f5;
+  color: #B80000;
+}
+
+.has-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.has-submenu:hover > a .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Navigation */
+.mobile-nav-container {
+  display: none;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.mobile-nav-container.active {
+  display: block;
+}
+
+.mobile-nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav-menu li {
+  border-bottom: 1px solid #333;
+}
+
+.mobile-nav-menu li a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-menu li a:hover {
+  background: rgba(184, 0, 0, 0.2);
+}
+
+/* Mobile Submenu Styles */
+.has-submenu-mobile > a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-arrow-mobile {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.submenu-mobile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #252525;
+  transition: max-height 0.3s ease;
+}
+
+.submenu-mobile.active {
+  max-height: 300px;
+}
+
+.submenu-mobile li a {
+  padding-left: 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+}
+
+.submenu-mobile li:last-child a {
+  border-bottom: none;
+}
+
+/* Responsive Header Styles */
+@media (max-width: 991px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .header-container {
+    padding: 0 20px;
+  }
+  
+  .logo-brand {
+    font-size: 26px;
+  }
+  
+  .logo-tagline {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 15px;
+    height: 60px;
+  }
+  
+  .logo-brand {
+    font-size: 22px;
+  }
+  
+  .logo-tv-badge {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  
+  .tv-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Clean up old nav dropdown styles that are no longer needed */
+.nav-dropdown,
+.nav-dropdown-inner,
+.nav-toggle,
+.hamburger-line,
+.site-title,
+.site-tagline,
+.header-brand,
+.home-link,
+.home-icon {
+  display: none !important;
+}
+
+/* --- REST OF YOUR STYLES (Post Cards, Footer, etc) --- */
+/* Keep your existing styles for posts, footer, sidebar, etc here */
+/* I've kept only the header/nav changes above */
+
+.featured-banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+  color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 5px solid #e31837;
+}
+
+.featured-banner-content {
+  max-width: 100%;
+}
+
+.featured-tag {
+  display: inline-block;
+  background: #e31837;
+  color: #fff;
+  padding: 3px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.featured-banner h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  font-family: 'Georgia', serif;
+}
+
+.featured-banner h2 a {
+  color: #fff;
+}
+
+.featured-banner h2 a:hover {
+  color: #e31837;
+  text-decoration: none;
+}
+
+.featured-banner p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* --- ENHANCED FOOTER STYLING --- */
+
+.footer {
+  background: #0d0d0d !important;
+  color: #e0e0e0 !important;
+  padding: 60px 0 30px !important;
+  margin-top: 50px !important;
+  border-top: 4px solid #e31837 !important;
+}
+
+.footer-container {
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+  padding: 0 40px !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 40px !important;
+}
+
+.footer-widget h3 {
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 18px !important;
+  padding-bottom: 12px !important;
+  position: relative !important;
+}
+
+.footer-widget h3::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 45px !important;
+  height: 3px !important;
+  background: #e31837 !important;
+  border-radius: 2px !important;
+}
+
+.footer-widget p {
+  color: #aaaaaa !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+  margin: 10px 0 !important;
+}
+
+.footer-widget ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer-widget ul li {
+  margin-bottom: 10px !important;
+  padding: 5px 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.footer-widget ul li:last-child {
+  border-bottom: none !important;
+}
+
+.footer-widget ul li a {
+  color: #bbbbbb !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  font-size: 14px !important;
+  display: inline-block !important;
+}
+
+.footer-widget ul li a:hover {
+  color: #e31837 !important;
+  padding-left: 8px !important;
+  text-decoration: none !important;
+}
+
+/* Social Icons in Footer */
+.footer-social {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 15px !important;
+}
+
+.footer-social a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  background: rgba(255,255,255,0.08) !important;
+  border-radius: 50% !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.footer-social a:hover {
+  background: #e31837 !important;
+  transform: translateY(-3px) !important;
+  text-decoration: none !important;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+  max-width: 1600px !important;
+  margin: 30px auto 0 !important;
+  padding: 20px 40px 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+}
+
+.footer-bottom p {
+  color: #888888 !important;
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+.footer-bottom a {
+  color: #aaaaaa !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.footer-bottom a:hover {
+  color: #e31837 !important;
+  text-decoration: none !important;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    text-align: center !important;
+  }
+  
+  .footer-widget h3::after {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .footer-social {
+    justify-content: center !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* --- Attribution --- */
+.Attribution {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* --- Responsive Grid --- */
+@media only screen and (min-width: 769px) {
+  #page_body .widget.Blog .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .post-outer-container {
+    margin: 0 !important;
+  }
+  
+  #FeaturedPost1 {
+    grid-column: 1 / -1;
+  }
+  
+  #FeaturedPost1 .snippet-thumbnail {
+    height: 350px;
+    max-height: 350px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #page_body .widget.Blog .blog-posts {
+    display: block;
+  }
+  
+  .post-outer {
+    padding: 18px;
+  }
+  
+  .post-title {
+    font-size: 20px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-widget h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* =========================================================
+   BOOGLE TV NEWS - FIXED FULL-WIDTH POST & SIDEBAR LAYOUT
+   ========================================================= */
+
+@media screen and (min-width: 992px) {
+  /* 1. Outer container expansion - full width */
+  body.item-view .container,
+  body.static_page .container,
+  body.item-view #outer-wrapper,
+  body.static_page #outer-wrapper {
+    max-width: 1600px !important;
+    width: 95% !important;
+    margin: 0 auto !important;
+  }
+
+  /* 2. Main structural layout - use grid for content-wrapper */
+  body.item-view .content-wrapper,
+  body.static_page .content-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 280px !important;
+    gap: 40px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* 3. Post Content Column */
+  body.item-view main,
+  body.item-view main[role="main"],
+  body.static_page main,
+  body.static_page main[role="main"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Force all nested inner wrappers in main/article to stretch to 100% */
+  body.item-view main div,
+  body.static_page main div,
+  body.item-view article,
+  body.static_page article {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. Sidebar Column */
+  body.item-view aside,
+  body.item-view aside[role="complementary"],
+  body.static_page aside,
+  body.static_page aside[role="complementary"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Force inner sidebar widgets & list items to expand properly */
+  body.item-view aside div,
+  body.static_page aside div,
+  body.item-view aside ul,
+  body.static_page aside ul,
+  body.item-view aside li,
+  body.static_page aside li {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Article Typography & Formatting */
+  body.item-view article h1,
+  body.item-view article h2,
+  body.item-view article h3 {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Mobile & Tablet Fallback */
+@media screen and (max-width: 991px) {
+  body.item-view main,
+  body.static_page main,
+  body.item-view aside,
+  body.static_page aside {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+/* =========================================================
+   BOOGLE TV NEWS - FULL WIDTH DESKTOP POST CONTAINER
+   ========================================================= */
+
+@media screen and (min-width: 992px) {
+
+  /* 1. Force outer containers to 100% full screen width */
+  body.item-view .container,
+  body.static_page .container,
+  body.item-view #outer-wrapper,
+  body.static_page #outer-wrapper,
+  body.item-view main[role="main"] > div,
+  body.static_page main[role="main"] > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Make the grid wrapper fill full width edge-to-edge with BBC-style layout */
+  body.item-view .content-wrapper,
+  body.static_page .content-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 280px !important;
+    width: 100% !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    gap: 40px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Widen post content wrapper to take up remaining full space */
+  body.item-view main,
+  body.item-view main[role="main"],
+  body.static_page main,
+  body.static_page main[role="main"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* 4. Keep sidebar compact on the right edge */
+  body.item-view aside,
+  body.item-view aside[role="complementary"],
+  body.static_page aside,
+  body.static_page aside[role="complementary"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 5. Fluid image scaling inside the full-width post area */
+  body.item-view article img,
+  body.static_page article img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+}
+/* ============================================
+   MAIN LAYOUT - RESPONSIVE BBC-STYLE LAYOUT
+   ============================================ */
+
+.page_body {
+  max-width: 1600px;
+  margin: 30px auto;
+  padding: 0 40px;
+}
+
+/* Outer wrapper for full-width layout */
+#outer-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* Content wrapper with grid layout */
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- MAIN CONTENT AREA (Post Grid) --- */
+#page_body .widget.Blog .blog-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two-column post grid */
+  gap: 25px;
+}
+
+/* Homepage specific enhancements */
+.homepage #page_body .widget.Blog .blog-posts {
+  animation: gridFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes gridFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-outer-container {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f2f5;
+  position: relative;
+  opacity: 0;
+  animation: postCardFadeIn 0.6s ease-out forwards;
+}
+
+/* Staggered animation for post cards */
+.homepage .post-outer-container:nth-child(1) { animation-delay: 0.1s; }
+.homepage .post-outer-container:nth-child(2) { animation-delay: 0.2s; }
+.homepage .post-outer-container:nth-child(3) { animation-delay: 0.3s; }
+.homepage .post-outer-container:nth-child(4) { animation-delay: 0.4s; }
+.homepage .post-outer-container:nth-child(5) { animation-delay: 0.5s; }
+.homepage .post-outer-container:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes postCardFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient border effect on hover */
+.post-outer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #e31837, #ff6b81, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post-outer-container:hover::before {
+  opacity: 1;
+}
+
+.post-outer-container:hover {
+  box-shadow: 0 12px 35px rgba(227, 24, 55, 0.15);
+  transform: translateY(-5px) scale(1.02);
+}
+
+.post-outer {
+  padding: 20px 22px 22px;
+}
+
+/* Post Thumbnail */
+.snippet-thumbnail {
+  margin: 0 0 12px 0;
+  max-width: 100%;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.snippet-thumbnail img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Image zoom effect on hover */
+.post-outer-container:hover .snippet-thumbnail img {
+  transform: scale(1.1);
+}
+
+/* Overlay effect on thumbnail */
+.snippet-thumbnail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(227, 24, 55, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.post-outer-container:hover .snippet-thumbnail::after {
+  opacity: 1;
+}
+
+/* Post Titles */
+.post-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 8px 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-title a {
+  color: #1a1a2e;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* Animated underline effect on title hover */
+.post-title a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  transition: width 0.3s ease;
+}
+
+.post-title a:hover {
+  color: #e31837;
+  text-decoration: none;
+}
+
+.post-title a:hover::after {
+  width: 100%;
+}
+
+/* Post Meta */
+.post-header {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+  border-bottom: none;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.byline, .post-timestamp {
+  display: inline-block;
+  margin-right: 12px;
+  position: relative;
+  padding-left: 18px;
+}
+
+/* Icon styling for meta info */
+.byline::before, .post-timestamp::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+.byline::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e31837'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.post-timestamp::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e31837'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.post-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.post-body p {
+  margin-bottom: 10px;
+}
+
+/* Read More Link */
+.jump-link {
+  text-align: left;
+  margin-top: 12px;
+}
+
+.jump-link a {
+  background: linear-gradient(90deg, #e31837, #ff6b81);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 3px 10px rgba(227, 24, 55, 0.3);
+}
+
+.jump-link a::after {
+  content: " →";
+  transition: transform 0.3s ease;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.jump-link a:hover {
+  background: linear-gradient(90deg, #c41230, #e31837);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(227, 24, 55, 0.5);
+  text-decoration: none;
+}
+
+.jump-link a:hover::after {
+  transform: translateX(6px);
+}
+
+/* Post Footer */
+.post-footer {
+  border-top: 1px solid #eee;
+  padding-top: 14px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #888;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.post-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.post-labels a {
+  background: linear-gradient(135deg, #f0f2f5, #e8e8e8);
+  color: #555;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: inline-block;
+}
+
+.post-labels a:hover {
+  background: linear-gradient(135deg, #e31837, #ff6b81);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(227, 24, 55, 0.4);
+}
+
+/* --- FEATURED POST (Full Width) --- */
+#FeaturedPost1 {
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+  animation: featuredPostFadeIn 1s ease-out forwards;
+}
+
+@keyframes featuredPostFadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#FeaturedPost1 .snippet-thumbnail img {
+  height: 350px;
+  transition: transform 0.6s ease;
+}
+
+#FeaturedPost1:hover .snippet-thumbnail img {
+  transform: scale(1.05);
+}
+
+#FeaturedPost1 .post-title {
+  font-size: 26px;
+  position: relative;
+}
+
+/* Featured post badge */
+#FeaturedPost1::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #e31837, #ff6b81);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Desktop: Two-column layout with wide content and narrow sidebar */
+@media screen and (min-width: 992px) {
+  .content-wrapper {
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+  }
+
+  /* Main content area takes full available space */
+  main[role="main"] {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Sidebar styling */
+  .sidebar-wrapper {
+    width: 100%;
+    max-width: 280px;
+    position: sticky;
+    top: 20px;
+    align-self: start;
+  }
+
+  /* Ensure post container fills the available width */
+  body.item-view .post-outer-container,
+  body.static_page .post-outer-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Post content images scale properly */
+  body.item-view article img,
+  body.static_page article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+}
+
+/* Tablet: Stack layout */
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 30px;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .sidebar-wrapper {
+    max-width: 100%;
+    position: static;
+  }
+
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile: Single column layout */
+@media screen and (max-width: 768px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 20px;
+    margin: 20px auto;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .sidebar-wrapper {
+    width: 100%;
+    max-width: 100%;
+    position: static;
+  }
+
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .post-outer {
+    padding: 16px;
+  }
+
+  .snippet-thumbnail img {
+    height: 180px;
+  }
+
+  #FeaturedPost1 .snippet-thumbnail img {
+    height: 220px;
+  }
+
+  /* Adjust header for mobile */
+  .header-container {
+    padding: 0 20px;
+  }
+
+  .site-title {
+    font-size: 24px;
+  }
+
+  .breaking-news-bar .container {
+    padding: 0 20px;
+  }
+
+  /* Footer adjustments */
+  .footer-container {
+    padding: 0 20px !important;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .footer-bottom {
+    padding: 20px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .page_body,
+  #outer-wrapper {
+    padding: 0 15px;
+    margin: 15px auto;
+  }
+
+  .site-title {
+    font-size: 20px;
+  }
+
+  .post-title {
+    font-size: 18px;
+  }
+
+  .nav-dropdown {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+  
+ /* --- BBC Header Styling --- */
+.header-wrapper {
+  background: #1a1a1a !important;
+  border-bottom: 3px solid #B80000 !important;
+}
+}
+/* ============================================
+   FIX SHARE BUTTONS & SOCIAL ICONS - BBC STYLE
+   ============================================ */
+
+/* --- General Share Button Container --- */
+.share-buttons,
+.post-share-buttons,
+.share-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin: 10px 0 !important;
+}
+
+/* --- Individual Share Buttons --- */
+.share-buttons a,
+.post-share-buttons a,
+.share-container a,
+.share-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  padding: 0 !important;
+  border-radius: 4px !important;
+  background: #f0f0f0 !important;
+  color: #555 !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.share-buttons a:hover,
+.post-share-buttons a:hover,
+.share-container a:hover,
+.share-button:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  transform: translateY(-2px) !important;
+}
+
+/* --- Share Button Icons (Font Awesome / SVG) --- */
+.share-buttons a svg,
+.post-share-buttons a svg,
+.share-container a svg,
+.share-button svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+  display: block !important;
+}
+
+/* --- Text Labels on Share Buttons --- */
+.share-buttons a span,
+.post-share-buttons a span,
+.share-container a span,
+.share-button span {
+  display: none !important;
+}
+
+/* --- Specific Platform Colors (Optional) --- */
+.share-buttons .facebook,
+.share-button.facebook {
+  background: #1877f2 !important;
+  color: #fff !important;
+}
+
+.share-buttons .twitter,
+.share-button.twitter {
+  background: #000000 !important;
+  color: #fff !important;
+}
+
+.share-buttons .pinterest,
+.share-button.pinterest {
+  background: #bd081c !important;
+  color: #fff !important;
+}
+
+.share-buttons .whatsapp,
+.share-button.whatsapp {
+  background: #25d366 !important;
+  color: #fff !important;
+}
+
+.share-buttons .email,
+.share-button.email {
+  background: #666 !important;
+  color: #fff !important;
+}
+
+/* --- BBC Share Section Title --- */
+.share-title,
+.share-label {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  margin-right: 8px !important;
+  font-family: 'Segoe UI', Arial, sans-serif !important;
+}
+
+/* --- Post Footer Share Buttons --- */
+.post-footer .share-buttons,
+.post-footer .post-share-buttons {
+  margin-top: 10px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid #e5e5e5 !important;
+}
+
+/* --- Blog Sharing Icons (Facebook, Twitter, etc) --- */
+.sharing-icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+.sharing-icons a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  background: #f0f0f0 !important;
+  border-radius: 4px !important;
+  color: #555 !important;
+  font-size: 13px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.sharing-icons a:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.sharing-icons a svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* --- Mobile Adjustment --- */
+@media screen and (max-width: 768px) {
+  .share-buttons a,
+  .post-share-buttons a,
+  .share-container a,
+  .share-button,
+  .sharing-icons a {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    font-size: 12px !important;
+  }
+  
+  .share-buttons a svg,
+  .post-share-buttons a svg,
+  .share-container a svg,
+  .share-button svg,
+  .sharing-icons a svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  
+  .share-title,
+  .share-label {
+    font-size: 12px !important;
+  }
+}
+
+/* --- Hide Any Unwanted Share Text --- */
+.share-this,
+.share-text {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+}
+
+/* --- Fix Button Containers --- */
+.share-button-container,
+.share-buttons-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+/* --- CSS for Blogger's Native Share Buttons --- */
+.share-button-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  background: #f0f0f0 !important;
+  border-radius: 4px !important;
+  color: #555 !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  margin: 0 2px !important;
+}
+
+.share-button-link:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* --- Compress Large Social Icons --- */
+.social-icons,
+.social-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  flex-wrap: wrap !important;
+}
+
+.social-icons a,
+.social-links a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  background: #f0f0f0 !important;
+  border-radius: 50% !important;
+  color: #555 !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.social-icons a:hover,
+.social-links a:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.social-icons a svg,
+.social-links a svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+
+/* --- Remove Extra Spacing from Share Area --- */
+.post-share-menu {
+  margin: 5px 0 !important;
+  padding: 0 !important;
+}
+
+.share-menu-header {
+  margin-bottom: 5px !important;
+}
+
+/* --- Small, Clean BBC-Style Share Buttons --- */
+.bbc-share-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 4px !important;
+  background: #f0f0f0 !important;
+  color: #555 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+  margin: 0 3px !important;
+}
+
+.bbc-share-button:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+.bbc-share-button svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+/* --- Share Count Badge (if you have one) --- */
+.share-count {
+  font-size: 11px !important;
+  color: #888 !important;
+  margin-left: 4px !important;
+}
+
+
+.site-title {
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+.site-title a {
+  color: #ffffff !important;
+}
+
+.site-title a:hover {
+  color: #B80000 !important;
+}
+
+.site-tagline {
+  font-size: 11px !important;
+  color: rgba(255,255,255,0.4) !important;
+}
+
+.breaking-news-bar {
+  background: #B80000 !important;
+  color: #fff !important;
+  padding: 4px 0 !important;
+}
+
+.breaking-label {
+  background: #fff !important;
+  color: #B80000 !important;
+  padding: 2px 10px !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+}
+/* --- Quick Fix for Share Buttons --- */
+.share-buttons a,
+.post-share-buttons a,
+.share-container a,
+.share-button,
+.sharing-icons a,
+.social-icons a {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  background: #f0f0f0 !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.share-buttons a svg,
+.post-share-buttons a svg,
+.share-container a svg,
+.share-button svg,
+.sharing-icons a svg,
+.social-icons a svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.share-buttons a:hover,
+.post-share-buttons a:hover,
+.share-container a:hover,
+.share-button:hover,
+.sharing-icons a:hover,
+.social-icons a:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+}
+
+@media screen and (max-width: 768px) {
+  .share-buttons a,
+  .post-share-buttons a,
+  .share-container a,
+  .share-button,
+  .sharing-icons a,
+  .social-icons a {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .share-buttons a svg,
+  .post-share-buttons a svg,
+  .share-container a svg,
+  .share-button svg,
+  .sharing-icons a svg,
+  .social-icons a svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+}.home-icon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+/* --- FIX SHARE BUTTON SIZES --- */
+.share-buttons,
+.post-share-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.share-buttons a,
+.post-share-buttons a,
+.share-button-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  border-radius: 4px !important;
+  background: #e8e8e8 !important;
+  color: #333 !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+.share-buttons a:hover,
+.post-share-buttons a:hover,
+.share-button-link:hover {
+  background: #B80000 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Hide any text labels next to icons */
+.share-buttons a span,
+.post-share-buttons a span {
+  display: none !important;
+}
+
+/* For the "Get link" button specifically */
+.share-button-link {
+  background: #e8e8e8 !important;
+  color: #333 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}/* ==================================================
+   Modernized & Resizable Blogger Share Buttons
+   ================================================== */
+
+/* 1. Quick Customization Controls */
+:root {
+  --share-btn-size: 13px;          /* Resize font size (Controls overall scale) */
+  --share-btn-padding: 8px 16px;   /* Vertical and Horizontal inner spacing */
+  --share-btn-radius: 20px;        /* 20px for pill style | 6px for soft square */
+  --share-btn-bg: #f1f5f9;         /* Neutral button background */
+  --share-btn-color: #334155;      /* Text and icon color */
+  --share-btn-hover-bg: #2563eb;   /* Default hover background color */
+  --share-btn-hover-color: #ffffff;/* Default hover text color */
+}
+
+/* 2. Share Buttons Container Alignment */
+.post-share-buttons,
+.sharing-buttons,
+.post-footer-line {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+/* 3. Base Button Styling (Overrides Blogger Default Styles) */
+a.goog-inline-block[class*="sharing-"],
+.sharing-platform-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  padding: var(--share-btn-padding) !important;
+  font-size: var(--share-btn-size) !important;
+  font-weight: 600 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: var(--share-btn-color) !important;
+  background-color: var(--share-btn-bg) !important;
+  border-radius: var(--share-btn-radius) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out !important;
+  line-height: 1 !important;
+}
+
+/* Hover & Active Effects */
+a.goog-inline-block[class*="sharing-"]:hover,
+.sharing-platform-button:hover {
+  background-color: var(--share-btn-hover-bg) !important;
+  color: var(--share-btn-hover-color) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  border-color: transparent !important;
+}
+
+/* Active Click Effect */
+a.goog-inline-block[class*="sharing-"]:active,
+.sharing-platform-button:active {
+  transform: translateY(0);
+}
+
+/* 4. Text & SVG Icon Cleanups */
+.share-button-link-text,
+.platform-sharing-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Auto-scale SVG icons inside buttons if present */
+a.goog-inline-block[class*="sharing-"] svg,
+.sharing-platform-button svg {
+  width: 1.15em !important;
+  height: 1.15em !important;
+  fill: currentColor !important;
+}
+
+/* ==================================================
+   Optional: Individual Brand Hover Colors
+   ================================================== */
+a.sharing-facebook:hover {
+  background-color: #1877f2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3) !important;
+}
+
+a.sharing-twitter:hover,
+a.sharing-x:hover {
+  background-color: #0f1419 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(15, 20, 25, 0.3) !important;
+}
+
+a.sharing-pinterest:hover {
+  background-color: #e60023 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3) !important;
+}
+
+.sharing-element-other:hover {
+  background-color: #475569 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3) !important;
+}
+/* Completely hide the main oversized share toggle box */
+.sharing-button,
+.post-share-buttons-byline,
+.sharing-button-container {
+  display: none !important;
+}
+/* --- SHARE BUTTONS - FIX SIZES --- */
+.news-card-share {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-wrap: wrap !important;
+}
+
+.share-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  border: none !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  background: #f0f0f0 !important;
+}
+
+/* SVG icons */
+.share-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: #fff !important;
+  display: block !important;
+}
+
+/* Hide text labels */
+.share-btn span {
+  display: none !important;
+}
+
+/* Platform colors */
+.share-btn.facebook { background: #1877f2 !important; }
+.share-btn.twitter { background: #000000 !important; }
+.share-btn.whatsapp { background: #25d366 !important; }
+.share-btn.copylink { background: #6c757d !important; }
+
+.share-btn:hover {
+  transform: scale(1.1) !important;
+  opacity: 0.85 !important;
+  text-decoration: none !important;
+}
+
+/* --- FIX CARD FOOTER LAYOUT --- */
+.news-card-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid #e5e5e5 !important;
+}
+
+.news-card-date {
+  font-size: 12px !important;
+  color: #888 !important;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .share-btn {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+  }
+  
+  .share-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+/* Responsive Sidebar */
+@media screen and (max-width: 1024px) {
+  body.item-view .sidebar-wrapper,
+  body.static_page .sidebar-wrapper {
+    display: block;
+    margin-top: 30px;
+  }
+  
+  body.item-view .content-wrapper,
+  body.static_page .content-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .sidebar-wrapper {
+    grid-column: 1 / -1 !important;
+  }
+}
+    }
+}
+/* ============================================
+   BBC NEWS STYLE RESPONSIVE IMPROVEMENTS
+   Add these styles to fix responsiveness
+   ============================================ */
+
+/* --- 1. BBC-Style Container System --- */
+.container, #outer-wrapper {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+}
+
+@media (min-width: 1200px) {
+  .container, #outer-wrapper {
+    max-width: 1440px !important;
+    padding: 0 24px !important;
+  }
+}
+
+/* --- 2. Responsive Grid for Homepage --- */
+@media (min-width: 992px) {
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #page_body .widget.Blog .blog-posts {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* --- 3. Article Typography - BBC Style --- */
+article h1 {
+  font-size: clamp(24px, 4vw, 36px) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+}
+
+article h2 {
+  font-size: clamp(20px, 3vw, 28px) !important;
+  line-height: 1.3 !important;
+  margin-bottom: 14px !important;
+  font-weight: 600 !important;
+}
+
+article h3 {
+  font-size: clamp(18px, 2.5vw, 22px) !important;
+  line-height: 1.4 !important;
+  margin-bottom: 12px !important;
+  font-weight: 600 !important;
+}
+
+article p {
+  font-size: clamp(16px, 1.5vw, 18px) !important;
+  line-height: 1.7 !important;
+  margin-bottom: 20px !important;
+  color: #333 !important;
+}
+
+/* --- 4. Responsive Images --- */
+article img, .post-body img, .snippet-thumbnail img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 16px auto !important;
+  border-radius: 4px !important;
+}
+
+/* Featured image on article page */
+body.item-view .snippet-thumbnail img {
+  max-height: 500px !important;
+  object-fit: cover !important;
+  width: 100% !important;
+}
+
+/* --- 5. Mobile Navigation Improvements --- */
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap !important;
+    padding: 10px 16px !important;
+  }
+  
+  .site-title {
+    font-size: 24px !important;
+    order: -1 !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .nav-dropdown {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* --- 6. Post Card Responsiveness --- */
+.post-outer-container {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.snippet-thumbnail {
+  flex-shrink: 0 !important;
+}
+
+.snippet-thumbnail img {
+  aspect-ratio: 16/9 !important;
+  object-fit: cover !important;
+}
+
+/* --- 7. Sidebar Responsiveness --- */
+@media (min-width: 992px) {
+  body.item-view .content-wrapper,
+  body.static_page .content-wrapper {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 320px !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  body.item-view .content-wrapper,
+  body.static_page .content-wrapper {
+    display: block !important;
+  }
+  
+  body.item-view main,
+  body.static_page main,
+  body.item-view aside,
+  body.static_page aside {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/* --- 8. Breaking News Bar Mobile --- */
+@media (max-width: 480px) {
+  .breaking-news-bar .container {
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+  }
+  
+  .breaking-label {
+    margin-right: 0 !important;
+    margin-bottom: 4px !important;
+  }
+}
+
+/* --- 9. Share Buttons Mobile --- */
+@media (max-width: 480px) {
+  .news-card-share, .share-buttons {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  
+  .share-btn {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 4px !important;
+  }
+}
+
+/* --- 10. Footer Responsiveness --- */
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-container {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+  
+  .footer-widget h3::after {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* --- 11. Performance: Lazy Loading --- */
+img[loading="lazy"] {
+  background: #f0f0f0;
+  min-height: 150px;
+}
+
+/* --- 12. Touch-Friendly Elements --- */
+@media (max-width: 768px) {
+  a, button, .jump-link a {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .nav-menu > li > a {
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* --- 13. Readability Improvements --- */
+article {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+@media (min-width: 992px) {
+  body.item-view article {
+    max-width: 100% !important;
+  }
+}
+
+/* --- 14. Video Embeds Responsive --- */
+iframe, embed, object {
+  max-width: 100% !important;
+  aspect-ratio: 16/9 !important;
+}
+
+/* --- 15. Tables Responsive --- */
+table {
+  display: block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
