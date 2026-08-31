@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boogle TV News — Preview</title>
+<style>
+:root{
+  --primary:#c8102e;--primary-dark:#a00d24;--accent:#0a0a0a;--text:#1f2024;--muted:#6b7280;
+  --bg:#ffffff;--surface:#f5f6f8;--border:#e7e8ec;--header-bg:#0d0f14;--header-fg:#ffffff;
+  --radius:10px;--radius-sm:6px;--maxw:1280px;--shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow:0 4px 18px rgba(0,0,0,.10);--shadow-lg:0 10px 40px rgba(0,0,0,.16);--transition:.25s ease;
+  --font-sans:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-serif:Georgia,'Times New Roman',serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--primary);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--primary-dark);text-decoration:underline}
+ul,ol{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-serif);font-weight:700;line-height:1.25;color:var(--accent);margin:0 0 .5em}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.content-wrapper{display:grid;grid-template-columns:1fr 300px;gap:32px;max-width:var(--maxw);margin:0 auto;padding:32px 24px}
+#main{min-width:0;width:100%}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primary);z-index:9999;transition:width .1s linear}
+/* topbar */
+.topbar{background:#06070a;color:#cfd2d8;font-size:12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.topbar-inner{max-width:var(--maxw);margin:0 auto;padding:7px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar-search{display:flex;align-items:center;gap:6px}
+.topbar-search input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:20px;padding:5px 12px;font-size:12px;width:180px}
+.topbar-search input::placeholder{color:#9aa0aa}
+.topbar-search button{background:none;border:none;color:#cfd2d8;padding:4px;display:flex;align-items:center}
+/* header */
+.header-wrapper{background:var(--header-bg);position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-container{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.blog-logo{display:flex;align-items:center;gap:8px;color:var(--header-fg);text-decoration:none}
+.logo-brand{font-family:var(--font-sans);font-size:26px;font-weight:800;letter-spacing:-.5px}
+.logo-tv-badge{display:inline-flex;align-items:center;gap:3px;background:var(--primary);color:#fff;padding:3px 8px;border-radius:4px;font-weight:700;font-size:13px}
+.logo-tagline{font-size:11px;color:#8b909a;font-weight:400;margin-left:4px}
+.desktop-nav{flex:1;display:flex;justify-content:flex-end}
+.nav-menu{display:flex;list-style:none;gap:2px;align-items:center}
+.nav-menu>li>a{display:block;padding:10px 14px;color:var(--header-fg);text-decoration:none;font-family:var(--font-sans);font-size:14px;font-weight:600;border-bottom:3px solid transparent;transition:all var(--transition)}
+.nav-menu>li>a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--primary);text-decoration:none}
+.has-submenu{position:relative}
+.has-submenu>a{display:flex;align-items:center;gap:5px}
+.dropdown-arrow{font-size:9px;transition:transform var(--transition)}
+.submenu{position:absolute;top:100%;left:0;background:#fff;min-width:210px;box-shadow:var(--shadow-lg);border-radius:0 0 var(--radius-sm) var(--radius-sm);border-top:3px solid var(--primary);opacity:0;visibility:hidden;transform:translateY(8px);transition:all var(--transition);z-index:1001;padding:6px 0}
+.submenu li a{display:block;padding:10px 16px;color:var(--text);font-size:13px;font-weight:500;border-bottom:none;transition:all var(--transition)}
+.submenu li a:hover{background:var(--surface);color:var(--primary);padding-left:22px;text-decoration:none}
+.has-submenu:hover .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+.has-submenu:hover .dropdown-arrow{transform:rotate(180deg)}
+.mobile-menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px}
+.mobile-menu-toggle span{display:block;width:24px;height:2px;background:#fff;transition:all var(--transition)}
+/* breaking */
+.breaking-news-bar{background:var(--primary);color:#fff;overflow:hidden;position:relative}
+.breaking-news-bar .container{display:flex;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 24px;height:38px;gap:14px}
+.breaking-label{background:#fff;color:var(--primary);padding:3px 11px;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.6px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;gap:5px}
+.breaking-dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.breaking-news-ticker{flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.ticker-track{display:inline-block;animation:ticker 30s linear infinite;padding-left:100%}
+.breaking-news-ticker a{color:#fff;font-size:13px;font-weight:500;margin-right:42px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+/* hero */
+.hero-section{position:relative;border-radius:var(--radius);overflow:hidden;margin-bottom:28px;background:#11141a;box-shadow:var(--shadow)}
+.hero-image{width:100%;height:100%;object-fit:cover;aspect-ratio:16/9;display:block;transition:transform .6s ease}
+.hero-section::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.4) 45%,transparent 75%);pointer-events:none}
+.hero-content{position:absolute;left:0;right:0;bottom:0;padding:28px 30px;z-index:2}
+.hero-category{display:inline-block;background:var(--primary);color:#fff;padding:4px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;border-radius:3px;margin-bottom:12px}
+.hero-title{font-size:38px;line-height:1.2;margin:0 0 8px;max-width:760px}
+.hero-title a{color:#fff}
+.hero-title a:hover{color:#ffd9df;text-decoration:none}
+.hero-excerpt{color:rgba(255,255,255,.85);font-size:15px;margin:0;max-width:620px}
+.hero-meta{color:rgba(255,255,255,.7);font-size:12px;margin-top:10px}
+/* section title */
+.section-title{font-family:var(--font-sans);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin:0 0 18px;padding-bottom:10px;border-bottom:3px solid var(--border);position:relative}
+.section-title::before{content:'';width:30px;height:3px;background:var(--primary);position:absolute;bottom:-3px;left:0}
+/* cards */
+.blog-posts{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.news-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:transform var(--transition),box-shadow var(--transition);display:flex;flex-direction:column}
+.news-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.news-card-image{position:relative;overflow:hidden;background:var(--surface)}
+.news-card-image img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .5s ease}
+.news-card:hover .news-card-image img{transform:scale(1.06)}
+.news-card-label{position:absolute;top:12px;left:12px;z-index:2}
+.news-card-label a{display:inline-block;background:var(--primary);color:#fff;padding:4px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;border-radius:3px}
+.news-card-content{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.news-card-title{font-size:18px;line-height:1.3;margin:0 0 8px}
+.news-card-title a{color:var(--accent)}
+.news-card-title a:hover{color:var(--primary);text-decoration:none}
+.news-card-snippet{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 12px;flex:1}
+.news-card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.news-card-date{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.news-card-date::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary)}
+.news-card-read{font-size:13px;font-weight:600}
+/* sidebar */
+.sidebar-wrapper{width:100%}
+.sidebar-wrapper .widget{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
+.sidebar-wrapper .widget h3{font-family:var(--font-sans);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);margin:0 0 14px;padding-bottom:9px;border-bottom:3px solid var(--border);position:relative}
+.sidebar-wrapper .widget h3::before{content:'';position:absolute;bottom:-3px;left:0;width:32px;height:3px;background:var(--primary)}
+.trending-list{counter-reset:trending}
+.trending-list li{counter-increment:trending;display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.trending-list li:last-child{border-bottom:none}
+.trending-list li::before{content:counter(trending,decimal-leading-zero);font-family:var(--font-serif);font-size:20px;font-weight:700;color:var(--primary);min-width:28px}
+.trending-list a{font-size:14px;font-weight:600;line-height:1.35;color:var(--accent)}
+.trending-list a:hover{color:var(--primary);text-decoration:none}
+.cat-list li{padding:8px 0;border-bottom:1px solid var(--surface)}
+.cat-list li:last-child{border-bottom:none}
+.cat-list a{font-size:14px;color:var(--text)}
+.cat-list a:hover{color:var(--primary)}
+.cat-list .count{color:var(--muted);font-size:12px}
+/* footer */
+.footer{background:#06070a;color:#cfd2d8;padding:50px 0 0;margin-top:40px;border-top:4px solid var(--primary)}
+.footer-container{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+.footer-widget h3{color:#fff;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 16px;padding-bottom:10px;position:relative}
+.footer-widget h3::after{content:'';position:absolute;bottom:0;left:0;width:36px;height:3px;background:var(--primary);border-radius:2px}
+.footer-widget p{color:#9aa0aa;font-size:14px;line-height:1.7;margin:0 0 14px}
+.footer-widget ul li{margin-bottom:9px}
+.footer-widget ul li a{color:#b9bfc9;font-size:14px;transition:all var(--transition);display:inline-block}
+.footer-widget ul li a:hover{color:var(--primary);padding-left:6px;text-decoration:none}
+.footer-bottom{max-width:var(--maxw);margin:36px auto 0;padding:18px 24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{color:#7a8089;font-size:13px;margin:0}
+.needs-config{font-size:11px;color:#7a8089;font-style:italic}
+.back-to-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;background:var(--primary);color:#fff;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(16px);transition:all var(--transition);box-shadow:var(--shadow);z-index:998;cursor:pointer}
+.back-to-top svg{width:22px;height:22px;fill:#fff}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{background:var(--primary-dark);transform:translateY(-3px)}
+.main-heading{font-family:var(--font-sans);font-size:22px;font-weight:800;margin:0 0 20px}
+@media (max-width:991px){.desktop-nav{display:none}.mobile-menu-toggle{display:flex}.topbar-search{display:none}.content-wrapper{grid-template-columns:1fr}.footer-container{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.footer-container{grid-template-columns:1fr;text-align:center}.footer-widget h3::after{left:50%;transform:translateX(-50%)}.footer-bottom{flex-direction:column;text-align:center}.blog-posts{grid-template-columns:1fr}}
+@media (max-width:480px){.container,.content-wrapper{padding-left:16px;padding-right:16px}.hero-content{padding:18px}.hero-title{font-size:22px}}
+</style>
+</head>
+<body class="homepage">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-date" id="topDate"></span>
+    <form class="topbar-search" role="search"><input placeholder="Search Boogle TV News" type="search"><button type="submit"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z" fill="currentColor"/></svg></button></form>
+  </div>
+</div>
+<header class="header-wrapper">
+  <div class="header-container">
+    <a class="blog-logo" href="#"><span class="logo-brand">Boogle</span><span class="logo-tv-badge"><svg width="16" height="16" viewBox="0 0 24 24"><rect fill="currentColor" x="3" y="8" width="18" height="13" rx="2"/><path d="M8 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>TV</span><span class="logo-tagline">News &amp; Gist Hub</span></a>
+    <nav class="desktop-nav"><ul class="nav-menu">
+      <li><a href="#">Asin'De Hot</a></li>
+      <li><a href="#">Politics</a></li>
+      <li><a href="#">Celebrity</a></li>
+      <li><a href="#">Finances &amp; Crypto</a></li>
+      <li><a href="#">Education</a></li>
+      <li class="has-submenu"><a href="javascript:void(0)">Sports <span class="dropdown-arrow">▼</span></a>
+        <ul class="submenu">
+          <li><a href="#">Football</a></li><li><a href="#">Gaming &amp; Esports</a></li><li><a href="#">Formula 1 &amp; Motorsport</a></li>
+          <li><a href="#">Track &amp; Athletics</a></li><li><a href="#">Basketball</a></li><li><a href="#">Boxing &amp; UFC/MMA</a></li>
+        </ul></li>
+      <li><a href="post.html">About</a></li>
+    </ul></nav>
+    <button class="mobile-menu-toggle"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="breaking-news-bar"><div class="container">
+  <span class="breaking-label"><span class="breaking-dot"></span> Breaking</span>
+  <div class="breaking-news-ticker"><div class="ticker-track">
+    <a href="post.html">Tottenham suffer shocking defeat in opening match of the season</a>
+    <a href="post.html">CBN announces new foreign exchange policy reforms</a>
+    <a href="post.html">Super Eagles qualify for AFCON final after dramatic win</a>
+    <a href="post.html">Bitcoin surges past $100,000 amid market rally</a>
+  </div></div>
+</div></div>
+
+<div class="content-wrapper">
+  <main id="main">
+    <h2 class="main-heading">Latest News</h2>
+    <a href="post.html" style="text-decoration:none;color:inherit">
+    <article class="hero-section">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&h=675&fit=crop" alt="Featured story">
+      <div class="hero-content">
+        <span class="hero-category">Sports</span>
+        <h2 class="hero-title">Tottenham Will Never Forget This Day: The Full Story of the Brentford Humiliation</h2>
+        <p class="hero-excerpt">A stunning opening-day collapse has left fans reeling as the club searches for answers after a performance that will live long in the memory.</p>
+        <div class="hero-meta">Aug 22, 2026 · Read more →</div>
+      </div>
+    </article></a>
+
+    <h3 class="section-title">Latest News</h3>
+    <div class="blog-posts">
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Politics</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Senate passes landmark education reform bill after heated debate</a></h2>
+        <p class="news-card-snippet">Lawmakers approved sweeping changes to the education sector following a marathon session that ran late into the night.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 22, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a733623?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Celebrity</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Nollywood star announces surprise return to the screen after five-year break</a></h2>
+        <p class="news-card-snippet">The award-winning actor confirmed the news on social media, sending fans into a frenzy with the unexpected announcement.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 21, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Finances &amp; Crypto</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Bitcoin surges past $100,000 amid global market rally</a></h2>
+        <p class="news-card-snippet">The cryptocurrency hit a fresh milestone as institutional investors poured billions into digital assets this week.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 21, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Education</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Universities adopt new digital learning platform for 2026 session</a></h2>
+        <p class="news-card-snippet">A coalition of institutions rolled out the unified system aimed at improving access and outcomes for students nationwide.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 20, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Sports</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Super Eagles qualify for AFCON final after dramatic late winner</a></h2>
+        <p class="news-card-snippet">A stoppage-time strike sent the home crowd into delirium and booked a place in the continental showpiece.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 20, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+      <article class="news-card"><a href="post.html"><div class="news-card-image"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=225&fit=crop" alt="" loading="lazy"><span class="news-card-label"><a href="#">Asin'De Hot</a></span></div></a>
+        <div class="news-card-content"><h2 class="news-card-title"><a href="post.html">Viral moment captures the nation's attention as debate heats up online</a></h2>
+        <p class="news-card-snippet">The trending clip has sparked conversations across social media platforms with millions of views in hours.</p>
+        <div class="news-card-footer"><span class="news-card-date">Aug 19, 2026</span><a class="news-card-read" href="post.html">Read more →</a></div></div></article>
+    </div>
+  </main>
+  <aside class="sidebar-wrapper">
+    <div class="widget"><h3>Trending</h3>
+      <ul class="trending-list">
+        <li><a href="post.html">CBN announces new foreign exchange policy reforms</a></li>
+        <li><a href="post.html">Nollywood star announces surprise return to the screen</a></li>
+        <li><a href="post.html">Bitcoin surges past $100,000 amid market rally</a></li>
+        <li><a href="post.html">Super Eagles qualify for AFCON final</a></li>
+        <li><a href="post.html">Universities adopt new digital learning platform</a></li>
+      </ul></div>
+    <div class="widget"><h3>Categories</h3>
+      <ul class="cat-list">
+        <li><a href="#">Sports</a> <span class="count">(48)</span></li>
+        <li><a href="#">Politics</a> <span class="count">(36)</span></li>
+        <li><a href="#">Celebrity</a> <span class="count">(29)</span></li>
+        <li><a href="#">Finances &amp; Crypto</a> <span class="count">(21)</span></li>
+        <li><a href="#">Education</a> <span class="count">(17)</span></li>
+        <li><a href="#">Asin'De Hot</a> <span class="count">(12)</span></li>
+      </ul></div>
+  </aside>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-widget"><h3>Boogle TV News</h3><p>Your trusted source for the latest news, politics, sports, celebrity gist, finance, crypto and education coverage for Nigerian and international audiences.</p><span class="needs-config">Social links need manual configuration — add your real URLs in the theme.</span></div>
+    <div class="footer-widget"><h3>Navigation</h3><ul><li><a href="#">Asin'De Hot</a></li><li><a href="#">Politics</a></li><li><a href="#">Celebrity</a></li><li><a href="#">Finances &amp; Crypto</a></li><li><a href="#">Education</a></li><li><a href="#">Home</a></li></ul></div>
+    <div class="footer-widget"><h3>Sports</h3><ul><li><a href="#">Football</a></li><li><a href="#">Gaming &amp; Esports</a></li><li><a href="#">Formula 1 &amp; Motorsport</a></li><li><a href="#">Track &amp; Athletics</a></li><li><a href="#">Basketball</a></li><li><a href="#">Boxing &amp; UFC/MMA</a></li></ul></div>
+    <div class="footer-widget"><h3>Company</h3><ul><li><a href="post.html">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© Boogle TV News — All Rights Reserved</p><p>Powered by Blogger</p></div>
+</footer>
+<button class="back-to-top" id="backToTop"><svg viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg></button>
+<script>
+document.getElementById('topDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+window.addEventListener('scroll',function(){var st=document.body.scrollTop||document.documentElement.scrollTop;var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;var p=document.getElementById('scrollProgress');if(p)p.style.width=(h>0?(st/h)*100:0)+'%';var t=document.getElementById('backToTop');if(t)t.classList.toggle('visible',st>400);},{passive:true});
+document.getElementById('backToTop').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+var mt=document.querySelector('.mobile-menu-toggle');if(mt)mt.addEventListener('click',function(){this.classList.toggle('active');alert('Mobile menu would open here (accordion with Sports submenu).');});
+</script>
+</body>
+</html>
