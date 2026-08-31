@@ -1,24 +1,26 @@
-# Boogle TV News — Base44 Dev Environment
+# Boogle TV News — Blogger Theme
 
-## What this repo is
-This is a **Blogger.com theme** project, not a standalone web application. The core files are Blogger XML templates (`booglenew-display-bugs-fixed.xml`, `booglenew-bbc-responsive.xml`, etc.) plus a standalone CSS file (`bbc-responsive-additions.css`). Blogger templates use proprietary tags (`<b:skin>`, `<b:widget>`, `<data:...>`, `<b:loop>`) that only render inside Blogger's engine — they cannot be served directly as a web page.
+This repo contains Blogger XML theme files for **Boogle TV News** (boogletvnews.blogspot.com).
 
-## How the preview works
-Since the theme can't run on its own, a static HTML preview was built at `preview/index.html`. It:
-- Extracts the theme's CSS from the `<b:skin>` CDATA block into `preview/assets/theme.css` (appended with `bbc-responsive-additions.css`).
-- Reproduces the theme's HTML structure (breaking news bar, header/nav, featured banner, post grid, sidebar, footer) with sample content replacing Blogger data tags.
-- Includes the theme's JavaScript (mobile menu toggle, sports submenu, scroll progress bar, back-to-top button).
+## What's here
+- `boogletvnews-theme-upgraded.xml` — the upgraded, professional news theme (the deliverable). Install via Blogger → Theme → Edit HTML → paste.
+- `booglenew-display-bugs-fixed.xml` — the original theme (kept as backup; do not delete).
+- `preview/` — a static HTML rendering of the theme (homepage + article) with mock content, served on port 3000 so the design is visible without Blogger.
 
-## Running it
-```bash
+## Running the preview
+```
 docker compose -f docker-compose.base44.yml up -d
 ```
-Serves the static preview on **port 3000** via nginx. No build step, no dependencies, no secrets required.
+Serves `preview/` via nginx on **port 3000**. Open the homepage at `/` and the article view at `/post.html`.
 
-## Editing the theme
-- To change the **preview appearance**, edit `preview/index.html` or `preview/assets/theme.css`.
-- To change the **actual Blogger theme**, edit the XML files (e.g. `booglenew-display-bugs-fixed.xml`). After editing the XML, re-extract the CSS into `preview/assets/theme.css` to keep the preview in sync.
+This is a static preview only — Blogger data tags (`data:post.*`, `b:loop`, etc.) only resolve inside Blogger. The preview uses mock content to show the design.
 
-## Verifying
-- `curl -sf -H "Host: external-preview.example.com" http://localhost:3000/` should return the HTML.
-- The preview should show the Boogle TV News homepage layout with header, featured banner, post grid, sidebar, and footer.
+## The actual theme is NOT a runnable web app
+The deliverable is the XML file uploaded to Blogger. There is no backend, database, or build step. Do not try to "run" the XML with docker — only the `preview/` folder is served.
+
+## Key facts for editing the theme
+- Based on Blogger's **Indie** 2nd-gen template (`b:templateUrl='indie.xml'`, layoutsVersion 3).
+- Blog1 widget uses `super.main` and overrides only `post`, `postBody`, `postCommentsAndAd`, `headerByline`, `postFooter`, `postLabels`, etc. Standard Blogger includables are inherited from defaults.
+- Breaking-news ticker and related-posts are populated client-side via the Blogger JSON feed (`feeds/posts/default?alt=json`) — no hard-coded content.
+- Navigation links and Sports dropdown URLs are hard-coded to the exact page URLs the user provided; do not change them.
+- Footer social links are intentionally left as "needs configuration" placeholders — do NOT invent social URLs.
