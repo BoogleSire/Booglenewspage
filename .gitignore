@@ -1,7 +1,9 @@
 ```
-# Backup files
-*.original-backup
+# WordPress/WPML related
+*.wpml-config.xml
+wpml-config.xml
 
-# Widget files
-footer_widget.txt
+# XML backup/config files
+*.xml.bak
+*.xml~
 ```
