@@ -2556,23 +2556,21 @@ html, body {
     <!-- Right: Desktop Navigation -->
     <nav class='desktop-nav'>
       <ul class='nav-menu'>
-        <li><a href='https://boogletvnews.blogspot.com/p/asin-de-hot-hot-trending-topics.html'>Asin'De Hot</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/politics.html'>Politics</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/celebrity-gist.html'>Celebrity</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/finances-and-crypto.html'>Finances &amp; Crypto</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/education.html'>Education</a></li>
+        <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+        <li><a href='/search/label/News'>News</a></li>
+        <li><a href='/search/label/Gist'>Gist</a></li>
+        <li><a href='/search/label/Entertainment'>Entertainment</a></li>
         <li class='has-submenu'>
-          <a href='javascript:void(0)' onclick='return false;'>Sports <span class='dropdown-arrow'>▼</span></a>
+          <a href='/search/label/Sports'>Sports <span class='dropdown-arrow'>▼</span></a>
           <ul class='submenu'>
-            <li><a href='https://boogletvnews.blogspot.com/p/football-news-dashboard.html'>Football</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/gaming-esports.html'>Gaming &amp; Esports</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/formula-1-motorsport.html'>Formula 1 &amp; Motorsport</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/track-athletics.html'>Track &amp; Athletics</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/basketball-news-dashboard.html'>Basketball</a></li>
-            <li><a href='https://boogletvnews.blogspot.com/p/boxing-ufc-mma.html'>Boxing &amp; UFC/MMA</a></li>
+            <li><a href='/search/label/Sports/Football'>Football</a></li>
+            <li><a href='/search/label/Sports/Basketball'>Basketball</a></li>
+            <li><a href='/search/label/Sports/Tennis'>Tennis</a></li>
+            <li><a href='/search/label/Sports/Athletics'>Athletics</a></li>
+            <li><a href='/search/label/Sports/Boxing'>Boxing</a></li>
           </ul>
         </li>
-        <li><a href='https://boogletvnews.blogspot.com/p/about.html'>About</a></li>
+        <li><a href='/search/label/Technology'>Technology</a></li>
       </ul>
     </nav>
 
@@ -2587,23 +2585,21 @@ html, body {
   <!-- Mobile Navigation Dropdown -->
   <div class='mobile-nav-container' id='mobileNavContainer'>
     <ul class='mobile-nav-menu'>
-      <li><a href='https://boogletvnews.blogspot.com/p/asin-de-hot-hot-trending-topics.html'>Asin'De Hot</a></li>
-      <li><a href='https://boogletvnews.blogspot.com/p/politics.html'>Politics</a></li>
-      <li><a href='https://boogletvnews.blogspot.com/p/celebrity-gist.html'>Celebrity</a></li>
-      <li><a href='https://boogletvnews.blogspot.com/p/finances-and-crypto.html'>Finances &amp; Crypto</a></li>
-      <li><a href='https://boogletvnews.blogspot.com/p/education.html'>Education</a></li>
+      <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+      <li><a href='/search/label/News'>News</a></li>
+      <li><a href='/search/label/Gist'>Gist</a></li>
+      <li><a href='/search/label/Entertainment'>Entertainment</a></li>
       <li class='has-submenu-mobile'>
-        <a href='javascript:void(0)' onclick='toggleSportsSubmenu(); return false;'>Sports <span class='dropdown-arrow-mobile'>▼</span></a>
+        <a href='javascript:void(0)' onclick='toggleSportsSubmenu()'>Sports <span class='dropdown-arrow-mobile'>▼</span></a>
         <ul class='submenu-mobile' id='sportsSubmenu'>
-          <li><a href='https://boogletvnews.blogspot.com/p/football-news-dashboard.html'>Football</a></li>
-          <li><a href='https://boogletvnews.blogspot.com/p/gaming-esports.html'>Gaming &amp; Esports</a></li>
-          <li><a href='https://boogletvnews.blogspot.com/p/formula-1-motorsport.html'>Formula 1 &amp; Motorsport</a></li>
-          <li><a href='https://boogletvnews.blogspot.com/p/track-athletics.html'>Track &amp; Athletics</a></li>
-          <li><a href='https://boogletvnews.blogspot.com/p/basketball-news-dashboard.html'>Basketball</a></li>
-          <li><a href='https://boogletvnews.blogspot.com/p/boxing-ufc-mma.html'>Boxing &amp; UFC/MMA</a></li>
+          <li><a href='/search/label/Sports/Football'>Football</a></li>
+          <li><a href='/search/label/Sports/Basketball'>Basketball</a></li>
+          <li><a href='/search/label/Sports/Tennis'>Tennis</a></li>
+          <li><a href='/search/label/Sports/Athletics'>Athletics</a></li>
+          <li><a href='/search/label/Sports/Boxing'>Boxing</a></li>
         </ul>
       </li>
-      <li><a href='https://boogletvnews.blogspot.com/p/about.html'>About</a></li>
+      <li><a href='/search/label/Technology'>Technology</a></li>
     </ul>
   </div>
 </header>
@@ -3773,26 +3769,21 @@ html, body {
       <h3>Quick Links</h3>
       <ul>
         <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/asin-de-hot-hot-trending-topics.html'>Asin'De Hot</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/politics.html'>Politics</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/celebrity-gist.html'>Celebrity</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/finances-and-crypto.html'>Finances &amp; Crypto</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/education.html'>Education</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/about.html'>About Us</a></li>
+        <li><a expr:href='data:blog.homepageUrl + &quot;p/about.html&quot;'>About Us</a></li>
+        <li><a expr:href='data:blog.homepageUrl + &quot;p/contact.html&quot;'>Contact</a></li>
+        <li><a expr:href='data:blog.homepageUrl + &quot;p/privacy-policy.html&quot;'>Privacy Policy</a></li>
+        <li><a expr:href='data:blog.homepageUrl + &quot;p/terms-of-service.html&quot;'>Terms of Service</a></li>
       </ul>
     </div>
-
-    <!-- Sports Links Widget -->
+    
+    <!-- Newsletter / Connect Widget -->
     <div class='footer-widget'>
-      <h3>Sports</h3>
-      <ul>
-        <li><a href='https://boogletvnews.blogspot.com/p/football-news-dashboard.html'>Football</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/gaming-esports.html'>Gaming &amp; Esports</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/formula-1-motorsport.html'>Formula 1 &amp; Motorsport</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/track-athletics.html'>Track &amp; Athletics</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/basketball-news-dashboard.html'>Basketball</a></li>
-        <li><a href='https://boogletvnews.blogspot.com/p/boxing-ufc-mma.html'>Boxing &amp; UFC/MMA</a></li>
-      </ul>
+      <h3>Connect With Us</h3>
+      <p>Follow us on social media for real-time updates and breaking news alerts.</p>
+      <p style='margin-top:15px; font-size:13px; color:#888;'>
+        <strong>Email:</strong> info@boogletvnews.com<br/>
+        <strong>Phone:</strong> +2348074820928
+    </p>
     </div>
   </div>
   
