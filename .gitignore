@@ -1,4 +1,7 @@
 ```
-*.xml.bak
-*.xml~
+# WordPress/WooCommerce theme files
+*.xml
+wp-content/
+wp-includes/
+wp-admin/
 ```
