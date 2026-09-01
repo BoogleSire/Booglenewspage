@@ -1078,9 +1078,15 @@ body#layout .footer{display:none}
           </span>
         </b:includable>
         <b:includable id='postBody' var='post'>
-          <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' expr:itemprop='(data:view.isSingleItem ? &quot;articleBody&quot; : &quot;description&quot;) + &quot; &quot; + (data:view.isSingleItem ? &quot;&quot; : &quot;blog-post&quot;)'>
-            <data:post.body/>
-          </div>
+          <b:if cond='data:view.isSingleItem'>
+            <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' itemprop='articleBody'>
+              <data:post.body/>
+            </div>
+          <b:else/>
+            <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' itemprop='description'>
+              <data:post.body/>
+            </div>
+          </b:if>
         </b:includable>
         <b:includable id='postBodySnippet' var='post'>
   <b:include data='post' name='postBody'/>
