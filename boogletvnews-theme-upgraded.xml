@@ -290,7 +290,9 @@ p{margin:0 0 1em}
 .article-featured figcaption,.image-credit{font-size:12px;color:var(--muted);margin-top:6px;font-style:italic;text-align:center}
 
 /* Article body */
-.single-post .post-body.entry-content{font-size:18px;line-height:1.8;color:#2a2c30;max-width:740px;margin:0 auto;padding:0 16px}
+.single-post .post-body.entry-content{font-size:18px;line-height:1.8;color:#2a2c30;max-width:740px;margin:0 auto;padding:0 16px;overflow:hidden;clear:both}
+.post-body.entry-content,.entry-content{display:block;visibility:visible;opacity:1}
+.float-container{overflow:hidden;clear:both}
 .post-body.entry-content p{margin:0 0 1.3em}
 .post-body.entry-content h2{font-size:26px;margin:1.4em 0 .6em}
 .post-body.entry-content h3{font-size:21px;margin:1.2em 0 .5em}
@@ -422,7 +424,7 @@ p{margin:0 0 1em}
   .footer-bottom{flex-direction:column;text-align:center}
   .related-grid{grid-template-columns:1fr 1fr}
   .article-title{font-size:26px}
-  .post-body.entry-content{font-size:17px}
+  .post-body.entry-content{font-size:17px;overflow:hidden;clear:both}
 }
 @media (max-width:480px){
   .container,.content-wrapper,.page_body,.header-container,.breaking-news-bar .container{padding-left:16px;padding-right:16px}
@@ -431,7 +433,7 @@ p{margin:0 0 1em}
   .hero-content{padding:18px 18px}
   .hero-title{font-size:22px}
   .article-title{font-size:23px}
-  .post-body.entry-content{font-size:17px;line-height:1.7}
+  .post-body.entry-content{font-size:17px;line-height:1.7;overflow:hidden;clear:both}
   .back-to-top{width:42px;height:42px;bottom:20px;right:20px}
   .topbar-inner{font-size:11px}
 }
@@ -461,6 +463,8 @@ body#layout .sidebar-wrapper{display:block;width:100%}
     padding-left: 2%;
     padding-right: 2%;
     box-sizing: border-box;
+    overflow: hidden;
+    clear: both;
   }
   .post-body img,
   .entry-content img{
