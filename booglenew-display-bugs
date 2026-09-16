@@ -357,6 +357,13 @@ p{margin:0 0 1em}
 .sidebar-wrapper .PopularPosts img{border-radius:var(--radius-sm);margin-bottom:6px}
 .sidebar-wrapper .PopularPosts .item-title a{font-weight:600;font-size:14px}
 
+/* Categories Dropdown */
+.categories-dropdown{position:relative}
+.categories-dropdown select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;background:#fff;cursor:pointer}
+.categories-dropdown select:focus{outline:2px solid var(--primary);border-color:var(--primary)}
+.categories-dropdown option{padding:8px}
+.sidebar-wrapper .Label-widget-content ul{display:none}
+
 /* ============================================
    14. FOOTER
    ============================================ */
@@ -1598,7 +1605,7 @@ body#layout .footer{display:none}
         <b:widget-settings>
           <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
           <b:widget-setting name='showThumbnails'>true</b:widget-setting>
-          <b:widget-setting name='showSnippets'>true</b:widget-setting>
+          <b:widget-setting name='showSnippets'>false</b:widget-setting>
           <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'><b:include name='super.main'/></b:includable>
@@ -1878,6 +1885,14 @@ body#layout .footer{display:none}
         <b:includable id='content'>
           <div class='widget-content'>
             <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
+            <div class='categories-dropdown'>
+              <select onchange='location.href=this.value'>
+                <option value=''>Select a Category</option>
+                <b:loop values='data:labels' var='label'>
+                  <option expr:value='data:label.url'><data:label.name/> (<data:label.count/>)</option>
+                </b:loop>
+              </select>
+            </div>
             <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
             <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
           </div>
