@@ -362,7 +362,7 @@ p{margin:0 0 1em}
 .categories-dropdown select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;background:#fff;cursor:pointer}
 .categories-dropdown select:focus{outline:2px solid var(--primary);border-color:var(--primary)}
 .categories-dropdown option{padding:8px}
-.sidebar-wrapper .Label-widget-content ul{display:none}
+.sidebar-wrapper .list-label-widget-content ul,.sidebar-wrapper .cloud-label-widget-content ul{display:none}
 
 /* ============================================
    14. FOOTER
@@ -1866,7 +1866,7 @@ body#layout .footer{display:none}
           <b:widget-setting name='display'>LIST</b:widget-setting>
           <b:widget-setting name='selectedLabelsList'/>
           <b:widget-setting name='showType'>ALL</b:widget-setting>
-          <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+          <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'><b:include name='super.main'/></b:includable>
         <b:includable id='cloud'>
