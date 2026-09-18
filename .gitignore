@@ -25,13 +25,14 @@ target/
 
 # Compiled files
 *.pyc
-*.class
+__pycache__/
 *.o
+*.obj
+*.class
 *.exe
 *.dll
 *.so
 *.a
-*.obj
 *.out
 
 # System files
